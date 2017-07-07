@@ -1,0 +1,723 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="Chinese">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="数据结构," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="Doubly LinkedList 即双向链表,在 Singly LinkedList 的基础上又增加了一个指向前一个 node 的指针。  双向链表也叫双链表，是链表的一种，它的每个数据结点中都有两个指针，分别指向直接后继和直接前驱。所以，从双向链表中的任意一个结点开始，都可以很方便地访问它的前驱结点和后继结点。一般我们都构造双向循环链表。  Doubly LinkedList（DLL） 与 S">
+<meta name="keywords" content="数据结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构之 Doubly LinkedList">
+<meta property="og:url" content="http://yoursite.com/2017/07/07/数据结构之-Doubly-LinkedList/index.html">
+<meta property="og:site_name" content="Kurt&#39;s Blog">
+<meta property="og:description" content="Doubly LinkedList 即双向链表,在 Singly LinkedList 的基础上又增加了一个指向前一个 node 的指针。  双向链表也叫双链表，是链表的一种，它的每个数据结点中都有两个指针，分别指向直接后继和直接前驱。所以，从双向链表中的任意一个结点开始，都可以很方便地访问它的前驱结点和后继结点。一般我们都构造双向循环链表。  Doubly LinkedList（DLL） 与 S">
+<meta property="og:updated_time" content="2017-07-07T12:57:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构之 Doubly LinkedList">
+<meta name="twitter:description" content="Doubly LinkedList 即双向链表,在 Singly LinkedList 的基础上又增加了一个指向前一个 node 的指针。  双向链表也叫双链表，是链表的一种，它的每个数据结点中都有两个指针，分别指向直接后继和直接前驱。所以，从双向链表中的任意一个结点开始，都可以很方便地访问它的前驱结点和后继结点。一般我们都构造双向循环链表。  Doubly LinkedList（DLL） 与 S">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/07/数据结构之-Doubly-LinkedList/"/>
+
+
+
+
+
+  <title>数据结构之 Doubly LinkedList | Kurt's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="Chinese">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Kurt's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">随手记录自己的学习过程</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/07/数据结构之-Doubly-LinkedList/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kurt">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://upload.wikimedia.org/wikipedia/en/0/0c/Velvet_Underground_and_Nico.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kurt's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据结构之 Doubly LinkedList</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-07T22:51:30+10:00">
+                2017-07-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Doubly LinkedList 即双向链表,在 Singly LinkedList 的基础上又增加了一个指向前一个 node 的指针。</p>
+<blockquote>
+<p>双向链表也叫双链表，是链表的一种，它的每个数据结点中都有两个指针，分别指向直接后继和直接前驱。所以，从双向链表中的任意一个结点开始，都可以很方便地访问它的前驱结点和后继结点。一般我们都构造双向循环链表。</p>
+</blockquote>
+<p><strong><em>Doubly LinkedList（DLL） 与 Singly LinkedList（SLL） 的对比：<br></em></strong></p>
+<ol>
+<li>DLL 在删除节点方面比 SLL 更方便。SLL 要找到要删除节点的前一个节点，往往是用遍历整个链表的方法。在 DLL 中，我们可以使用 previousPointer 获取前一个节点。<br></li>
+<li>DLL 由于多了一个指针，更需要空间，在某些特定的操作操作上比 SLL 更麻烦（比如插入）。</li>
+</ol>
+<p><strong>对于双向链表来说，我们主要考虑如下几个操作</strong>：</p>
+<p></p><h2>如何在Java中构造一个双向链表</h2><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">DoublyLinkedList</span></span>&#123;</div><div class="line">	<span class="keyword">static</span> Node head = <span class="keyword">null</span>;</div><div class="line"></div><div class="line">	<span class="class"><span class="keyword">class</span> <span class="title">Node</span></span>&#123;</div><div class="line">		<span class="keyword">int</span> data;</div><div class="line">		Node next, prev;</div><div class="line"></div><div class="line">		Node(<span class="keyword">int</span> data)&#123;</div><div class="line">			<span class="keyword">this</span>.data = data;</div><div class="line">			next = <span class="keyword">null</span>;</div><div class="line">			prev = <span class="keyword">null</span>;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p></p>
+<p></p><h2>如何打印出 DLL 中的元素</h2><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Print the elements in DLL</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printList</span><span class="params">(Node node)</span></span>&#123;</div><div class="line">	Node last = node;</div><div class="line">	System.out.println(<span class="string">"Traversal in forward direction \n"</span>);</div><div class="line">	<span class="keyword">while</span> (node != <span class="keyword">null</span>)&#123;</div><div class="line">		System.out.println(node.data + <span class="string">" "</span>);</div><div class="line">		last = node;</div><div class="line">		node = node.next;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	System.out.println(<span class="string">"Traversal in backword direction \n"</span>);</div><div class="line">	<span class="keyword">while</span> (last != <span class="keyword">null</span>)&#123;</div><div class="line">		System.out.println(last.data + <span class="string">" "</span>);</div><div class="line">		last = last.prev;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p></p>
+<p></p><h2>如何在 DLL 中插入一个节点</h2><br>插入一个节点分为四种不同的情况，我们依次来讨论：<p></p>
+<p><strong>1.如何在 DLL 头部插入节点</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* Given a reference (pointer to pointer) to the head of a list</span></div><div class="line">and an int, inserts a new node on the front of the list. */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(Node node, <span class="keyword">int</span> newData)</span></span>&#123;</div><div class="line">	<span class="comment">// Allocate node and initialise data</span></div><div class="line">    Node newNode = <span class="keyword">new</span> Node(newData);  </div><div class="line"></div><div class="line">    <span class="comment">// Make next of new node as head and previous as NULL</span></div><div class="line">    newNode.next = node;</div><div class="line">    newNode.prev = <span class="keyword">null</span>;</div><div class="line"></div><div class="line">    <span class="comment">// Change prev of head node to new node</span></div><div class="line">	<span class="keyword">if</span> (node != <span class="keyword">null</span>) node.prev = newNode;</div><div class="line"></div><div class="line">	head = newNode;  <span class="comment">// Move the head to point to the new node</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>2.如何在指定节点之后插入</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Given a node as prev_node, insert a new node after the given node</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertAfter</span><span class="params">(Node node, <span class="keyword">int</span> newData)</span></span>&#123;</div><div class="line">	<span class="keyword">if</span> (node == <span class="keyword">null</span>)&#123;      <span class="comment">// Check if the given node is null</span></div><div class="line">    	System.out.println(<span class="string">"The given node cannot be null."</span>);</div><div class="line">    	<span class="keyword">return</span>; </div><div class="line">    &#125;</div><div class="line"></div><div class="line">    Node newNode = <span class="keyword">new</span> Node(newData);  <span class="comment">// Allocate node and initialise data</span></div><div class="line"></div><div class="line">    newNode.next = node.next;  <span class="comment">// Make next of new node as next of prevNode</span></div><div class="line">    newNode.prev = node;    <span class="comment">// Make prevNode as previous of newNode</span></div><div class="line">    node.next = newNode;    <span class="comment">// Make the next of prevNode as newNode</span></div><div class="line">    <span class="comment">// Change previous of newNode's next node</span></div><div class="line">    <span class="keyword">if</span> (newNode.next != <span class="keyword">null</span>) newNode.next.prev = newNode;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>3.如何在 DLL 尾部插入节点</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* Given a reference (pointer to pointer) to the head</span></div><div class="line">of a DLL and an int, appends a new node at the end  */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">append</span><span class="params">(Node node, <span class="keyword">int</span> newData)</span></span>&#123;</div><div class="line">	Node newNode = <span class="keyword">new</span> Node(newData); <span class="comment">// Allocate node and initialise data</span></div><div class="line"></div><div class="line">    <span class="comment">//This new node is going to be the last node, so make next of it as null</span></div><div class="line">    newNode.next = <span class="keyword">null</span>; </div><div class="line"></div><div class="line">    <span class="comment">//If the Linked List is empty, then make the new node as head</span></div><div class="line">    <span class="keyword">if</span> (node == <span class="keyword">null</span>)&#123;</div><div class="line">    	newNode.prev = <span class="keyword">null</span>;</div><div class="line">    	head = newNode;</div><div class="line">    	<span class="keyword">return</span>;</div><div class="line">    &#125;  </div><div class="line"></div><div class="line">    <span class="comment">// Else traverse till the last node</span></div><div class="line">    Node temp = node;</div><div class="line">    <span class="keyword">while</span> (temp.next != <span class="keyword">null</span>)&#123;</div><div class="line">    	temp = temp.next;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    temp.next = newNode;  <span class="comment">// Change the next of last node</span></div><div class="line">    newNode.prev = temp;  <span class="comment">// Make last node as previous of new node</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>4.如何在给定节点之前插入节点</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Given a node as prev_node, insert a new node before the given node</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertBefore</span><span class="params">(Node node, <span class="keyword">int</span> newData)</span></span>&#123;</div><div class="line">	<span class="keyword">if</span> (node == <span class="keyword">null</span>)&#123;      <span class="comment">// Check if the given node is null</span></div><div class="line">		System.out.println(<span class="string">"The given node cannot be null."</span>);</div><div class="line">		<span class="keyword">return</span>; </div><div class="line">	&#125;</div><div class="line"></div><div class="line">	Node newNode = <span class="keyword">new</span> Node(newData);  <span class="comment">// Allocate node and initialise data</span></div><div class="line"></div><div class="line">	newNode.next = node;</div><div class="line">	newNode.prev = node.prev;</div><div class="line">	node.prev = newNode;</div><div class="line">	<span class="keyword">if</span> (newNode.prev != <span class="keyword">null</span>) newNode.prev.next = newNode;    </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p></p><h2>如何删除指定的节点</h2><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Function to delete a node in a Doubly Linked List</span></div><div class="line"><span class="comment">// node --&gt; head node</span></div><div class="line"><span class="comment">// del --&gt; the node need to be deleted</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">delete</span><span class="params">(Node node, Node del)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span> (head == <span class="keyword">null</span> || del == <span class="keyword">null</span>) <span class="keyword">return</span>;</div><div class="line"></div><div class="line">    <span class="comment">// If node to be deleted is head node</span></div><div class="line">    <span class="keyword">if</span> (head == del) head = del.next;</div><div class="line"></div><div class="line">    <span class="comment">// Change next only if node to be deleted is NOT the last node</span></div><div class="line">    <span class="keyword">if</span> (del.next != <span class="keyword">null</span>) del.next.prev = del.prev;</div><div class="line"></div><div class="line">    <span class="comment">// Change prev only if node to be deleted is NOT the first node</span></div><div class="line">    <span class="keyword">if</span> (del.prev != <span class="keyword">null</span>) del.prev.next = del.next;</div><div class="line"></div><div class="line">	<span class="keyword">return</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p></p>
+<p></p><h2>如何 reverse DLL</h2><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Function to reverse a Doubly Linked List</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reverse</span><span class="params">()</span></span>&#123;</div><div class="line">	Node temp = <span class="keyword">null</span>;</div><div class="line">	Node curr = head;</div><div class="line"></div><div class="line">	<span class="comment">// swap next and prev for all nodes of doubly linked list</span></div><div class="line">	<span class="keyword">while</span>(curr != <span class="keyword">null</span>)&#123;</div><div class="line">		temp = curr.prev;</div><div class="line">		curr.prev = curr.next;</div><div class="line">		curr.next = temp;</div><div class="line">		curr = curr.prev;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">// Before changing head, check for the cases like empty list</span></div><div class="line">	<span class="comment">// and list with only one node</span></div><div class="line">	<span class="keyword">if</span> (temp != <span class="keyword">null</span>) head = temp.prev;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p></p>
+<hr>
+<p><strong><em>关于 DLL 的讨论就到这里，以上内容如有纰漏或不足之处，欢迎与我讨论：<br>邮箱：entropy714@gmail.com<br>微信：cobain0714</em></strong></p>
+<p>Reference：</p>
+<ol>
+<li><a href="https://zh.wikipedia.org/wiki/%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8" target="_blank" rel="external">维基百科关于双向链表的解释</a></li>
+<li><a href="http://www.geeksforgeeks.org/doubly-linked-list/" target="_blank" rel="external">Geeksforgeeks</a></li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/07/数据结构之-Singly-LinkedList/" rel="next" title="数据结构之 Singly LinkedList">
+                <i class="fa fa-chevron-left"></i> 数据结构之 Singly LinkedList
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Content
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://upload.wikimedia.org/wikipedia/en/0/0c/Velvet_Underground_and_Nico.jpg"
+               alt="Kurt" />
+          <p class="site-author-name" itemprop="name">Kurt</p>
+           
+              <p class="site-description motion-element" itemprop="description">Lust For Life</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">Posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Kurt-Yu" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">如何在Java中构造一个双向链表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">如何打印出 DLL 中的元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">如何在 DLL 中插入一个节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">如何删除指定的节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">如何 reverse DLL</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kurt</span>
+</div>
+
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
