@@ -96,14 +96,14 @@
 <meta name="description" content="Java Collection 即 Java 的集合框架，何为集合框架，Wikipedia 上是这么解释的：  The Java collections framework (JCF) is a set of classes and interfaces that implement commonly reusable collection data structures. Although re">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java Collection | Set 1">
+<meta property="og:title" content="Java Collection | Set 1 (Iterator)">
 <meta property="og:url" content="http://yoursite.com/2017/07/08/Java-Collection-Set-1/index.html">
 <meta property="og:site_name" content="Kurt&#39;s Blog">
 <meta property="og:description" content="Java Collection 即 Java 的集合框架，何为集合框架，Wikipedia 上是这么解释的：  The Java collections framework (JCF) is a set of classes and interfaces that implement commonly reusable collection data structures. Although re">
 <meta property="og:image" content="https://i.stack.imgur.com/FbGNV.png">
-<meta property="og:updated_time" content="2017-07-08T05:52:52.000Z">
+<meta property="og:updated_time" content="2017-07-09T05:47:25.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java Collection | Set 1">
+<meta name="twitter:title" content="Java Collection | Set 1 (Iterator)">
 <meta name="twitter:description" content="Java Collection 即 Java 的集合框架，何为集合框架，Wikipedia 上是这么解释的：  The Java collections framework (JCF) is a set of classes and interfaces that implement commonly reusable collection data structures. Although re">
 <meta name="twitter:image" content="https://i.stack.imgur.com/FbGNV.png">
 
@@ -139,7 +139,7 @@
 
 
 
-  <title>Java Collection | Set 1 | Kurt's Blog</title>
+  <title>Java Collection | Set 1 (Iterator) | Kurt's Blog</title>
   
 
 
@@ -285,7 +285,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Java Collection | Set 1</h1>
+          <h1 class="post-title" itemprop="name headline">Java Collection | Set 1 (Iterator)</h1>
         
 
         <div class="post-meta">
@@ -295,7 +295,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-08T15:51:30+10:00">
                 2017-07-08
@@ -347,7 +347,7 @@
 <p></p><h2>Iterator 接口</h2><br>Iterator 即为“迭代器”，用于一个一个取出容器里的元素。在 Java 中，Iterator 分为以下三种：<p></p>
 <p><strong>1. Enumeration</strong><br>可以使用 <code>elements()</code>方法来创建一个 Enumeration 对象<br>Enumeration 接口中提供了两种方法：<br><code>public boolean hasMoreElements();</code>用于判断是否还有下一个对象<br><code>public Object nextElement();</code>用于返回下一个对象<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.Enumeration;</div><div class="line"><span class="keyword">import</span> java.util.Vector;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EnumerationDemo</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">		Vector v = <span class="keyword">new</span> Vector();</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)&#123;</div><div class="line">			v.addElement(i);</div><div class="line">		&#125;</div><div class="line">		System.out.println(v);</div><div class="line"></div><div class="line">		Enumeration e = v.elements();</div><div class="line">		<span class="keyword">while</span> (e.hasMoreElements())&#123;</div><div class="line">			<span class="keyword">int</span> i = (Integer)e.nextElement();</div><div class="line">			System.out.print(i + <span class="string">" "</span>);</div><div class="line">		&#125;</div><div class="line">		System.out.println();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>Source: <a href="http://www.geeksforgeeks.org/iterators-in-java/" target="_blank" rel="external">http://www.geeksforgeeks.org/iterators-in-java/</a></p>
-<p>Enmueration 的局限性在于</p>
+<p>Enumeration 的局限性在于</p>
 <p><em>它是JDK 1.0添加的接口，使用到它的函数只包括Vector、Hashtable等类。这些类都是JDK 1.0中加入的，Enumeration存在的目的就是为它们提供遍历接口。不具普遍性。</em></p>
 <p><em>它只能从头到尾遍历，只能读取数据，不能移除，也无法改动。</em></p>
 <p><strong>2. Iterator</strong><br>Iterator 是JDK 1.2才添加的接口，它可以为任何集合对象提供遍历接口。它比 Enumeration 更有通用性。</p>
@@ -424,6 +424,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2017/07/09/Java-Collection-Set-2-List/" rel="prev" title="Java Collection | Set 2 (List)">
+                Java Collection | Set 2 (List) <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -471,7 +475,7 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table of Content
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
             Overview
@@ -494,8 +498,8 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">4</span>
-                <span class="site-state-item-name">Posts</span>
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">posts</span>
               </a>
             </div>
           
@@ -508,7 +512,7 @@
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
                 <span class="site-state-item-count">2</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-name">tags</span>
               </a>
             </div>
           
@@ -585,7 +589,7 @@
 
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
