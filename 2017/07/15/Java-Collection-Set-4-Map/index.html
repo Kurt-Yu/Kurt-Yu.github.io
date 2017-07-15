@@ -1,0 +1,754 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="Chinese">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Java," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="今天我们来谈谈 Map 接口，先看看 Oracle 官方文档对其解释：  public interface Map An object that maps keys to values. A map cannot contain duplicate keys; each key can map to at most one value. This interface takes the place">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java Collection | Set 4 (Map)">
+<meta property="og:url" content="http://yoursite.com/2017/07/15/Java-Collection-Set-4-Map/index.html">
+<meta property="og:site_name" content="Kurt&#39;s Blog">
+<meta property="og:description" content="今天我们来谈谈 Map 接口，先看看 Oracle 官方文档对其解释：  public interface Map An object that maps keys to values. A map cannot contain duplicate keys; each key can map to at most one value. This interface takes the place">
+<meta property="og:image" content="https://i.stack.imgur.com/FbGNV.png">
+<meta property="og:updated_time" content="2017-07-15T07:24:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java Collection | Set 4 (Map)">
+<meta name="twitter:description" content="今天我们来谈谈 Map 接口，先看看 Oracle 官方文档对其解释：  public interface Map An object that maps keys to values. A map cannot contain duplicate keys; each key can map to at most one value. This interface takes the place">
+<meta name="twitter:image" content="https://i.stack.imgur.com/FbGNV.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/15/Java-Collection-Set-4-Map/"/>
+
+
+
+
+
+  <title>Java Collection | Set 4 (Map) | Kurt's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="Chinese">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Kurt's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">随手记录自己的学习过程</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/15/Java-Collection-Set-4-Map/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kurt">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://upload.wikimedia.org/wikipedia/en/0/0c/Velvet_Underground_and_Nico.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kurt's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java Collection | Set 4 (Map)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-15T17:17:52+10:00">
+                2017-07-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>今天我们来谈谈 Map 接口，先看看 Oracle 官方文档对其解释：</p>
+<blockquote>
+<p>public interface Map<k,v></k,v></p>
+<p>An object that maps keys to values. A map cannot contain duplicate keys; each key can map to at most one value.</p>
+<p>This interface takes the place of the Dictionary class, which was a totally abstract class rather than an interface.</p>
+<p>The Map interface provides three collection views, which allow a map’s contents to be viewed as a set of keys, collection of values, or set of key-value mappings. The order of a map is defined as the order in which the iterators on the map’s collection views return their elements. Some map implementations, like the TreeMap class, make specific guarantees as to their order; others, like the HashMap class, do not.</p>
+</blockquote>
+<p>Source: <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html" target="_blank" rel="external">https://docs.oracle.com/javase/8/docs/api/java/util/Map.html</a></p>
+<p>由以上这段话，我们可以看出它具有如下几个特点：</p>
+<ol>
+<li>它储存键 (key) 值 (value) 对，不允许有重复的 key，每一个 key 对应一个特定的值</li>
+<li>Map 接口不继承于 Collection 接口</li>
+<li>Map 接口中，有些实现类允许储存 <code>null</code> (<code>HashMap</code> 和 <code>LinkedHashMap</code>)，有些不允许(<code>TreeMap</code>)</li>
+<li>Set 接口提供了三种 view 的方法:<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Set&lt;Map.Entry&lt;K,V&gt;&gt;	    entrySet()</div><div class="line"><span class="comment">//Returns a Set view of the mappings contained in this map.</span></div><div class="line"></div><div class="line"><span class="function">Set&lt;K&gt;	     <span class="title">keySet</span><span class="params">()</span></span></div><div class="line"><span class="comment">//Returns a Set view of the keys contained in this map.</span></div><div class="line"></div><div class="line">Collection&lt;V&gt;	     <span class="title">values</span><span class="params">()</span></div><div class="line"><span class="comment">//Returns a Collection view of the values contained in this map.</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>代码示例如下<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.*;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MapDemo</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">	Map&lt;String, Integer&gt; hm = <span class="keyword">new</span> HashMap&lt;&gt;();</div><div class="line">	hm.put(<span class="string">"Placebo"</span>, <span class="keyword">new</span> Integer(<span class="number">1</span>));</div><div class="line">	hm.put(<span class="string">"New Order"</span>, <span class="keyword">new</span> Integer(<span class="number">2</span>));</div><div class="line">	hm.put(<span class="string">"Queen"</span>, <span class="keyword">new</span> Integer(<span class="number">3</span>));</div><div class="line">	hm.put(<span class="string">"The Doors"</span>, <span class="keyword">new</span> Integer(<span class="number">4</span>));</div><div class="line"></div><div class="line">	System.out.println(hm);  <span class="comment">// &#123;New Order=2, Queen=3, Placebo=1, The Doors=4&#125;</span></div><div class="line"></div><div class="line">	<span class="comment">// Return Set view</span></div><div class="line">	Set&lt;Map.Entry&lt;String, Integer&gt;&gt; set1 = hm.entrySet();</div><div class="line"></div><div class="line">	<span class="keyword">for</span> (Map.Entry&lt;String, Integer&gt; temp : set1)&#123;   <span class="comment">// New Order: 2</span></div><div class="line">            System.out.print(temp.getKey() + <span class="string">": "</span>);	<span class="comment">// Queen: 3</span></div><div class="line">	    System.out.println(temp.getValue());	<span class="comment">// Placebo: 1</span></div><div class="line">	&#125;						<span class="comment">// The Doors: 4</span></div><div class="line"></div><div class="line">	<span class="comment">// Returns a Set view of the keys contained in this map.</span></div><div class="line">	Set&lt;String&gt; set2 = hm.keySet();</div><div class="line">	System.out.println(set2);    <span class="comment">// [New Order, Queen, Placebo, The Doors]</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="https://i.stack.imgur.com/FbGNV.png" alt="Java Collection Framework"><br>Image Source：<a href="https://i.stack.imgur.com/FbGNV.png" target="_blank" rel="external">https://i.stack.imgur.com/FbGNV.png</a></p>
+<p>Map 接口有很多实现类，在此我们主要关注其中的三种 <code>HashMap</code>, <code>LinkedHashMap</code> <code>TreeMap</code>, 下面来一一讨论</p>
+<p></p><h2>HashMap</h2><p></p>
+<blockquote>
+<p>Hash table based implementation of the Map interface. This implementation provides all of the optional map operations, and permits null values and the null key. (The HashMap class is roughly equivalent to Hashtable, except that it is unsynchronized and permits nulls.) This class makes no guarantees as to the order of the map; in particular, it does not guarantee that the order will remain constant over time.</p>
+</blockquote>
+<p>Source: <a href="https://docs.oracle.com/javase/8/docs/api/java/util/HashMap.html" target="_blank" rel="external">https://docs.oracle.com/javase/8/docs/api/java/util/HashMap.html</a></p>
+<p>首先，我们先来了解一下什么是 HashMap。要了解 HashMap，得先从 Array 开始说起</p>
+<p>大家都知道 Array 是用来存储元素最基本得一种数据结构，它的最大特点是“索引”<br>这意味着我们可以根据索引在常数时间内根据索引获取，修改元素。 O(1)<br>Array 在内存中的存储方式是连续的，每一个 cell 是相邻排列的<br>这表明我们在创造 Array 时，就必须要规定 size，不然内存就不知道要分配多少空间给该 Array<br>这也就是 Array 的一大缺点<br>当 initial 很大的 capacity 又用不到时，内存会被浪费<br>当 initial 了很小的 capacity 又不够时，再添加元素时就会很麻烦</p>
+<p>讲完了 Array 的优缺点，再来看看我们前些天讨论的 LinkedList<br>LinkedList 的优点是 size 不固定，想添加多少个元素都可以<br>因为 LinkedList 的每个 node 在内存中是离散的<br>它们靠指向下一个 node 的指针就可以找到下一个元素<br>不需要像 Array 那样排列在一起<br>当需要添加元素时，内存就会找到任意一块空的 memory 来供其使用<br>当然，没有“索引”这个概念也为 LinkedList 带来了缺点<br>这意味着每次我们想要查找元素时，都要 traverse 整个 list<br>时间复杂度为 O(n)</p>
+<p>这时，我们就要考虑，有没有一种数据结构，能同时满足 Array 和 LinkedList 的优点呢<br>这种数据结构就是 HashTable<br>它既能根据提供的 Key 在 O(1) 时间内查找元素，需要扩容的时候也能 resize<br>它的内部结构是怎样的呢，这里有个 <a href="https://www.youtube.com/watch?v=h2d9b_nEzoA&amp;t=25s" target="_blank" rel="external">YouTube 视频</a> 讲的很清楚了<br>简单点来说，它就是一个 array of nodes, 每个 node 包括四个 fields：<br><code>key</code>, <code>hashcode</code>, <code>value</code>, <code>pointer</code><br>它底层使用了一种叫 hashing 的算法<br>传入 key，返回某个特定的值，我们把该值称为 hashcode<br>相当于数组中的 index，再根据该 hashcode，把 value 传到对应位置的 array 中<br>如果恰好又两个不同的 key，经过 hashing 算法后返回了同一个hashcode 怎么办？<br>这个时候就要用到 node 中的第四个 field 了：<code>pointer</code><br>这两个 hashcode 一样的 key，都把自己的 value 存放到同一个 array 的 cell<br>此时这个 cell 就相当于 linkedlist 了</p>
+<p>这时我们就要分析它的时间复杂度了<br>当我们想查找某个元素时，最坏的情况是，所有的 key 都有相同的 hashcode<br>即所有的 value 都以 linkedlist 的形式存放在了同一个 cell 中<br>此时需要 traverse 整个 linkedlist，时间复杂度为 O(n)<br>在 Java8 中，对该情形做了改进<br>当 linkedlist 元素超过8个时，linkedlist 会被转化成平衡树<br>时间复杂度从 O(n) 降到 O(lgn)</p>
+<p>HashMap 的内部结构就是使用的 HashTable<br>我们来看看 HashMap 的构造器<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">HashMap()</div><div class="line"><span class="comment">/*Constructs an empty HashMap with the default initial capacity (16) and the default load factor (0.75).*/</span></div><div class="line"></div><div class="line">HashMap(<span class="keyword">int</span> initialCapacity)</div><div class="line"><span class="comment">/*Constructs an empty HashMap with the specified initial capacity and the default load factor (0.75).*/</span></div><div class="line"></div><div class="line">HashMap(<span class="keyword">int</span> initialCapacity, <span class="keyword">float</span> loadFactor)</div><div class="line"><span class="comment">/*Constructs an empty HashMap with the specified initial capacity and load factor.*/</span></div><div class="line"></div><div class="line">HashMap(Map&lt;? extends K,? extends V&gt; m)</div><div class="line"><span class="comment">/*Constructs a new HashMap with the same mappings as the specified Map.*/</span></div></pre></td></tr></table></figure></p>
+<p>HashMap 常用方法示例<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.*;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HashMapDemo</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">	HashMap&lt;String, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</div><div class="line">	map.put(<span class="string">"Kurt Cobain"</span>, <span class="number">1</span>);</div><div class="line">	map.put(<span class="string">"Jim Morrison"</span>, <span class="number">2</span>);</div><div class="line">	map.put(<span class="string">"Peter Hook"</span>, <span class="number">3</span>);</div><div class="line">	map.put(<span class="string">"Slash"</span>, <span class="number">4</span>);</div><div class="line"></div><div class="line">	<span class="comment">// &#123;Jim Morrison=2, Peter Hook=3, Slash=4, Kurt Cobain=1&#125;</span></div><div class="line">	System.out.println(map);  </div><div class="line">	System.out.println(map.size());    <span class="comment">// 4</span></div><div class="line"></div><div class="line">	<span class="keyword">if</span> (map.containsKey(<span class="string">"Kurt Cobain"</span>))&#123;</div><div class="line">	    System.out.println(map.get(<span class="string">"Kurt Cobain"</span>));   <span class="comment">// 1</span></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	System.out.println(map.isEmpty());   <span class="comment">// false</span></div><div class="line">	System.out.println(map.containsValue(<span class="number">5</span>)); <span class="comment">// false</span></div><div class="line"></div><div class="line">	map.remove(<span class="string">"Slash"</span>);</div><div class="line">	map.replace(<span class="string">"Kurt Cobain"</span>, <span class="number">1</span>, <span class="number">7</span>);</div><div class="line">	System.out.println(map.size());     <span class="comment">// 3</span></div><div class="line">	System.out.println(map.get(<span class="string">"Kurt Cobain"</span>));    <span class="comment">// 7</span></div><div class="line"></div><div class="line">	<span class="comment">// keySet() method returns all the keys in HashMap</span></div><div class="line">	Set&lt;String&gt; temp1 = map.keySet();</div><div class="line">	System.out.println(temp1);  <span class="comment">// [Jim Morrison, Peter Hook, Kurt Cobain]</span></div><div class="line"></div><div class="line">	<span class="comment">// values() method return all the values in HashMap</span></div><div class="line">	Collection&lt;Integer&gt; temp2 = map.values();</div><div class="line">	System.out.println(temp2); <span class="comment">// [2, 3, 7]</span></div><div class="line"></div><div class="line">	<span class="comment">// entrySet() returns all the keys with their values present in Hashmap</span></div><div class="line">	Set&lt;Map.Entry&lt;String, Integer&gt;&gt; temp3 = map.entrySet();</div><div class="line">	System.out.println(temp3);  <span class="comment">// [Jim Morrison=2, Peter Hook=3, Kurt Cobain=7]</span></div><div class="line">    &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p></p><h2>LinkedHashMap</h2><p></p>
+<blockquote>
+<p>Hash table and linked list implementation of the Map interface, with predictable iteration order. This implementation differs from HashMap in that it maintains a doubly-linked list running through all of its entries. This linked list defines the iteration ordering, which is normally the order in which keys were inserted into the map (insertion-order). Note that insertion order is not affected if a key is re-inserted into the map. (A key k is reinserted into a map m if m.put(k, v) is invoked when m.containsKey(k) would return true immediately prior to the invocation.)</p>
+</blockquote>
+<p>Source: <a href="https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html" target="_blank" rel="external">https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html</a></p>
+<p>LinkedHashMap 有如下特点：</p>
+<ol>
+<li>LinkedHashMap 本质上和 HashMap 没有太大区别，除了可以 organize element in insertion order 以外</li>
+<li>底层采用了 Doubly Linked List 来组织 HashMap</li>
+<li>可以允许有一个 <code>null</code> 作为 key，多个 <code>null</code> 作为value</li>
+</ol>
+<p>常用方法示例<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.*;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LinkedHashMapDemo</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">	LinkedHashMap&lt;String, Integer&gt; map = <span class="keyword">new</span> LinkedHashMap&lt;&gt;();</div><div class="line"></div><div class="line">	map.put(<span class="string">"whatever"</span>, <span class="number">1</span>);</div><div class="line">	map.put(<span class="string">"nevermind"</span>, <span class="number">2</span>);</div><div class="line">	map.put(<span class="string">"somehow"</span>, <span class="number">3</span>);</div><div class="line">	map.put(<span class="string">"pale blue eyes"</span>, <span class="number">4</span>);</div><div class="line"></div><div class="line">	<span class="comment">// &#123;whatever=1, nevermind=2, somehow=3, pale blue eyes=4&#125;</span></div><div class="line">	System.out.println(map);</div><div class="line">	System.out.println(map.size());   <span class="comment">// 4</span></div><div class="line">	System.out.println(map.isEmpty());   <span class="comment">// false</span></div><div class="line">	System.out.println(map.containsKey(<span class="string">"nevermind"</span>)); <span class="comment">// true</span></div><div class="line">	System.out.println(map.containsValue(<span class="number">5</span>));   <span class="comment">// false</span></div><div class="line">	System.out.println(map.remove(<span class="string">"somehow"</span>)); <span class="comment">// 3</span></div><div class="line">	<span class="comment">// &#123;whatever=1, nevermind=2, pale blue eyes=4&#125;</span></div><div class="line">	System.out.println(map);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p></p><h2>TreeMap</h2><br>TreeMap 可以看作为 HashMap 的 sorted 版本<br>TreeMap 实现了红黑树(red-black tree), HashMap 实现了 hashing<br>TreeMap 方法和操作基本与 HashMap 一致，在此不过多虚数，我们来看一个应用<p></p>
+<p><strong><em>给定一个数组，返回每个元素出现的次数<br>Example:<br>input: array[] = {1, 1, 2, 3, 4, 1, 2, 3}<br>output:<br>Frequency of 1 is 3<br>Frequency of 2 is 2<br>Frequency of 3 is 2<br>Frequency of 4 is 1</em></strong></p>
+<p>注意 TreeMap 可以 sort element，所以返回的元素时＝是从小到大排序的<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.*;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TreeMapDemo</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">	<span class="keyword">int</span>[] array = &#123;<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</div><div class="line">	frequency(array);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">frequency</span><span class="params">(<span class="keyword">int</span>[] array)</span></span>&#123;</div><div class="line">	TreeMap&lt;Integer, Integer&gt; map = <span class="keyword">new</span> TreeMap&lt;&gt;();</div><div class="line">		</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; array.length; i++)&#123;</div><div class="line"> 	    Integer count = map.get(array[i]); </div><div class="line"></div><div class="line">	    <span class="keyword">if</span> (count == <span class="keyword">null</span>)&#123;</div><div class="line">		map.put(array[i], <span class="number">1</span>);</div><div class="line">	    &#125;</div><div class="line">	    <span class="keyword">else</span>&#123;</div><div class="line">		map.put(array[i], ++count);</div><div class="line">	    &#125;</div><div class="line"> 	&#125;</div><div class="line"></div><div class="line"> 	<span class="keyword">for</span> (Map.Entry m : map.entrySet())&#123;</div><div class="line"> 	    System.out.println(<span class="string">"Frequency of "</span> + m.getKey() + <span class="string">" is "</span> + m.getValue());	</div><div class="line"> 	&#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<hr>
+<p><strong><em>关于 Map 接口的讨论就到这里<br>以上内容如有疏漏或不足之处，欢迎与我讨论<br>邮箱：entropy714@gmail.com<br>微信：cobain0714</em></strong></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/14/Java-Collection-Set-3-Set/" rel="next" title="Java Collection | Set 3 (Set)">
+                <i class="fa fa-chevron-left"></i> Java Collection | Set 3 (Set)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://upload.wikimedia.org/wikipedia/en/0/0c/Velvet_Underground_and_Nico.jpg"
+               alt="Kurt" />
+          <p class="site-author-name" itemprop="name">Kurt</p>
+           
+              <p class="site-description motion-element" itemprop="description">Lust For Life</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Kurt-Yu" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">HashMap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">LinkedHashMap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">TreeMap</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kurt</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
