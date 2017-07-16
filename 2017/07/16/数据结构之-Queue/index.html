@@ -1,0 +1,732 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="Chinese">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="数据结构," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="如同 Stack 一样，Queue 也是一种线性的数据结构。不同点在于 Stack 是后进先出 (Last In First Out)，而 Queue 是先进先出 (First In First Out) FIFO  每次添加 (enqueue) 元素添加在队尾 (back), 每次取出 (dequeue) 元素取出对头 (front)可以将生活中的排队抽象为 Queue 这种数据结构 enque">
+<meta name="keywords" content="数据结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构之 Queue">
+<meta property="og:url" content="http://yoursite.com/2017/07/16/数据结构之-Queue/index.html">
+<meta property="og:site_name" content="Kurt&#39;s Blog">
+<meta property="og:description" content="如同 Stack 一样，Queue 也是一种线性的数据结构。不同点在于 Stack 是后进先出 (Last In First Out)，而 Queue 是先进先出 (First In First Out) FIFO  每次添加 (enqueue) 元素添加在队尾 (back), 每次取出 (dequeue) 元素取出对头 (front)可以将生活中的排队抽象为 Queue 这种数据结构 enque">
+<meta property="og:image" content="http://www.cs.cmu.edu/~mrmiller/15-121/Homework/hw8/queue.png">
+<meta property="og:updated_time" content="2017-07-16T05:36:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构之 Queue">
+<meta name="twitter:description" content="如同 Stack 一样，Queue 也是一种线性的数据结构。不同点在于 Stack 是后进先出 (Last In First Out)，而 Queue 是先进先出 (First In First Out) FIFO  每次添加 (enqueue) 元素添加在队尾 (back), 每次取出 (dequeue) 元素取出对头 (front)可以将生活中的排队抽象为 Queue 这种数据结构 enque">
+<meta name="twitter:image" content="http://www.cs.cmu.edu/~mrmiller/15-121/Homework/hw8/queue.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/16/数据结构之-Queue/"/>
+
+
+
+
+
+  <title>数据结构之 Queue | Kurt's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="Chinese">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Kurt's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">随手记录自己的学习过程</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/16/数据结构之-Queue/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kurt">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://upload.wikimedia.org/wikipedia/en/0/0c/Velvet_Underground_and_Nico.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kurt's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据结构之 Queue</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-16T15:31:02+10:00">
+                2017-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>如同 Stack 一样，Queue 也是一种线性的数据结构。不同点在于 Stack 是后进先出 (Last In First Out)，而 Queue 是先进先出 <strong>(First In First Out) FIFO</strong></p>
+<p><img src="http://www.cs.cmu.edu/~mrmiller/15-121/Homework/hw8/queue.png" alt="Queue"></p>
+<p>每次添加 (enqueue) 元素添加在队尾 (back), 每次取出 (dequeue) 元素取出对头 (front)<br>可以将生活中的排队抽象为 Queue 这种数据结构</p>
+<p>enqueue 和 dequeue 操作思路如下<br>为使一个元素 x enqueue，我们让 currentSize 和 back 增加1，使 currentSize[size] = x<br>为使元素 dequeue，我们置返回值为 theArray[front], 且 currentSize - 1，然后使 front 加1</p>
+<p></p><h2>Implementing Queue using Array</h2><br><em>使用 Array 来实现 Queue 时，要注意的一点是，当 front 为 array.length - 1 时，即 front 指向最后一个元素时，再想要 enqueue 就无法完成了。为解决该问题，我们用到了循环数组实现 (circular array)，即 只要 front 或 back 到达数组的尾端，它就又绕回到开头</em><p></p>
+<p>Java 实现如下<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.Arrays;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Queue</span>&lt;<span class="title">T</span>&gt;</span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> front;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> rear;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> capacity;</div><div class="line">    <span class="keyword">private</span> T[] array;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Queue</span><span class="params">(<span class="keyword">int</span> capacity)</span></span>&#123;</div><div class="line">	<span class="keyword">this</span>.capacity = capacity;</div><div class="line">	array = (T[]) <span class="keyword">new</span> Object[capacity];</div><div class="line">	front = <span class="number">0</span>;</div><div class="line">	rear = capacity -<span class="number">1</span>;</div><div class="line">	size = <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">(Queue q)</span></span>&#123;</div><div class="line"> 	<span class="keyword">return</span> (q.size == <span class="number">0</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isFull</span><span class="params">(Queue q)</span></span>&#123;</div><div class="line">	<span class="keyword">return</span> (q.size == q.capacity);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">enqueue</span><span class="params">(T value)</span></span>&#123;</div><div class="line">	<span class="keyword">if</span> (isFull(<span class="keyword">this</span>)) <span class="keyword">return</span>;</div><div class="line">	<span class="keyword">this</span>.rear = (<span class="keyword">this</span>.rear + <span class="number">1</span>) % <span class="keyword">this</span>.capacity;</div><div class="line">	<span class="keyword">this</span>.array[<span class="keyword">this</span>.rear] = value;</div><div class="line">	<span class="keyword">this</span>.size++;</div><div class="line">	System.out.println(value + <span class="string">" enqueued to queue"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dequeue</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">if</span> (isEmpty(<span class="keyword">this</span>)) <span class="keyword">return</span>;</div><div class="line">	T value = <span class="keyword">this</span>.array[<span class="keyword">this</span>.front];</div><div class="line">	array[front] = <span class="keyword">null</span>;</div><div class="line">	<span class="keyword">this</span>.front = (<span class="keyword">this</span>.front + <span class="number">1</span>) % <span class="keyword">this</span>.capacity;</div><div class="line">	<span class="keyword">this</span>.size --;</div><div class="line">	System.out.println(value + <span class="string">" dequeued from queue"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">front</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">if</span> (isEmpty(<span class="keyword">this</span>)) <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">	<span class="keyword">return</span> <span class="keyword">this</span>.array[<span class="keyword">this</span>.front];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">rear</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">if</span> (isEmpty(<span class="keyword">this</span>)) <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">	<span class="keyword">return</span> <span class="keyword">this</span>.array[<span class="keyword">this</span>.rear];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">return</span> <span class="string">"Queue front = "</span> + array[front]  +<span class="string">", rear = "</span> + </div><div class="line">	array[rear] + <span class="string">", size = "</span> + size + <span class="string">", queue = "</span> + Arrays.toString(array);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">	Queue q = <span class="keyword">new</span> Queue(<span class="number">10</span>);</div><div class="line">	q.enqueue(<span class="number">1</span>);   <span class="comment">// 1 enqueued to queue</span></div><div class="line">	q.enqueue(<span class="number">2</span>);   <span class="comment">// 2 enqueued to queue</span></div><div class="line">	q.enqueue(<span class="number">9</span>);   <span class="comment">// 9 enqueued to queue</span></div><div class="line">	q.enqueue(<span class="number">4</span>);   <span class="comment">// 4 enqueued to queue</span></div><div class="line"></div><div class="line">	q.dequeue();    <span class="comment">// 1 dequeued from queue</span></div><div class="line">	System.out.println(q.toString());</div><div class="line">	<span class="comment">// Queue front = 2, rear = 4, size = 3, queue = </span></div><div class="line">	<span class="comment">// [null, 2, 9, 4, null, null, null, null, null, null]</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>所有操作的时间复杂度为 O(1)</p>
+<p></p><h2>Implementing Queue using LinkedList</h2><br>enqueue 即在 LinkedList 后增加一个 node<br>dequeue 即 remove head node，move front to next node<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> key;</div><div class="line">    Node next;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(<span class="keyword">int</span> key)</span></span>&#123;</div><div class="line">	<span class="keyword">this</span>.key = key;</div><div class="line">	<span class="keyword">this</span>.next = <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Queue</span></span>&#123;</div><div class="line">    Node front, rear;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Queue</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">this</span>.front = <span class="keyword">null</span>;</div><div class="line">	<span class="keyword">this</span>.rear = <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">enqueue</span><span class="params">(<span class="keyword">int</span> key)</span></span>&#123;</div><div class="line">	Node temp = <span class="keyword">new</span> Node(key);</div><div class="line"></div><div class="line">	<span class="keyword">if</span> (rear == <span class="keyword">null</span>)&#123;</div><div class="line">	    front = temp;</div><div class="line">	    rear = temp;</div><div class="line">	    <span class="keyword">return</span>;</div><div class="line">	&#125;</div><div class="line">	rear.next = temp; <span class="comment">// Add the new node at the end of queue</span></div><div class="line">	rear = rear.next;  <span class="comment">// Change rear</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function">Node <span class="title">dequeue</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">if</span> (front == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line"></div><div class="line">	Node temp = <span class="keyword">this</span>.front;</div><div class="line">	<span class="keyword">this</span>.front = <span class="keyword">this</span>.front.next;</div><div class="line"></div><div class="line">	<span class="comment">// If front becomes NULL, then change rear also as NULL</span></div><div class="line">	<span class="keyword">if</span> (<span class="keyword">this</span>.front == <span class="keyword">null</span>) <span class="keyword">this</span>.rear = <span class="keyword">null</span>;</div><div class="line">	<span class="keyword">return</span> temp;</div><div class="line">    &#125; </div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">	Queue q = <span class="keyword">new</span> Queue();</div><div class="line">	q.enqueue(<span class="number">1</span>);   </div><div class="line">	q.enqueue(<span class="number">2</span>);  </div><div class="line">	q.enqueue(<span class="number">9</span>);   </div><div class="line">	q.enqueue(<span class="number">4</span>);      </div><div class="line">	System.out.println(<span class="string">"Dequeued item is: "</span> + q.dequeue().key); <span class="comment">// 1</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p></p>
+<p></p><h2>Implementing Queue using Stack</h2><br>使用两个 stack 来实现 Queue<br><code>push()</code> 把元素添加到最底端<br><code>pop()</code> 把最顶端的元素取出<br><code>peek()</code> 返回最顶端的元素<br><code>isEmpty()</code> 看 Queue 是否为空<p></p>
+<p>除了 <code>push()</code> 在 Stack 和 Queue 中表示不同的含义以外，其余的方法都是一样的<br><code>push()</code> 在 Stack 中是把元素添加到最顶端，而在 Queue 中，秉承着 FIFO 的原则，<code>push()</code> 表示把元素添加到最底端</p>
+<p>如何实现呢，这里提供一种思路<br>使用两个 stack，当需要把元素添加到 stack1 中时，先把 stack1 中的现有元素转移到 stack2 中<br>再 <code>push()</code>，然后把 stack2 中元素再转移到 stack1 中</p>
+<p>Java 代码实现如下<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.Stack;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Queue</span></span>&#123;</div><div class="line">    Stack&lt;Integer&gt; temp = <span class="keyword">new</span> Stack&lt;&gt;();</div><div class="line">    Stack&lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> i)</span></span>&#123;</div><div class="line">	<span class="keyword">if</span> (stack.isEmpty()) stack.push(i);</div><div class="line">	<span class="keyword">else</span> &#123;</div><div class="line">	    <span class="keyword">while</span> (!stack.isEmpty())&#123;</div><div class="line">		temp.push(stack.pop());</div><div class="line">	    &#125;</div><div class="line">	    stack.push(i);</div><div class="line">	    <span class="keyword">while</span> (!temp.isEmpty())&#123;</div><div class="line">		stack.push(temp.pop());</div><div class="line">	    &#125;</div><div class="line">	&#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">pop</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">return</span> stack.pop();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">peek</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">return</span> stack.peek();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">return</span> stack.isEmpty();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>关于 Queue，有个有趣的应用 ———&gt; <a href="http://www.geeksforgeeks.org/interesting-method-generate-binary-numbers-1-n/" target="_blank" rel="external">在这里</a><br>即给定一个数 n，返回从 1 到 n 的所有二进制数</p>
+<p>GeeksforGeeks 上提供的算法是这样的</p>
+<blockquote>
+<p>1) Create an empty queue of strings<br>2) Enqueue the first binary number “1” to queue.<br>3) Now run a loop for generating and printing n binary numbers.<br>……a) Dequeue and Print the front of queue.<br>……b) Append “0” at the end of front item and enqueue it.<br>……c) Append “1” at the end of front item and enqueue it.</p>
+</blockquote>
+<p>Source: <a href="http://www.geeksforgeeks.org/interesting-method-generate-binary-numbers-1-n/" target="_blank" rel="external">http://www.geeksforgeeks.org/interesting-method-generate-binary-numbers-1-n/</a></p>
+<p>Java 实现如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.Queue;</div><div class="line"><span class="keyword">import</span> java.util.LinkedList;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">QueueApp</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printBinary</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</div><div class="line">	Queue&lt;String&gt; q = <span class="keyword">new</span> LinkedList&lt;String&gt;();</div><div class="line">	q.add(<span class="string">"1"</span>);</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</div><div class="line">	    String temp = q.remove();</div><div class="line">	    System.out.println(temp);</div><div class="line">	    q.add(temp + <span class="string">"0"</span>);</div><div class="line">	    q.add(temp + <span class="string">"1"</span>);</div><div class="line">	&#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">	printBinary(<span class="number">7</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>运行结果如下：</p>
+<blockquote>
+<p>1<br>10<br>11<br>100<br>101<br>110<br>111</p>
+</blockquote>
+<p>Queue 由于其 FIFO 的特点，在我们不知道 input size 而又要将 input 存入到 array 中去时，queue 就可以派上用场了<br>先将元素 enqueue 到 queue 中，再求 q.size()，再将元素 dequeue 到 array 中<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.io.*;</div><div class="line"><span class="keyword">import</span> java.util.Scanner;</div><div class="line"><span class="keyword">import</span> java.util.Queue;</div><div class="line"><span class="keyword">import</span> java.util.LinkedList;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">QueueArray</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">	<span class="keyword">try</span>&#123;</div><div class="line">	    File f = <span class="keyword">new</span> File(args[<span class="number">0</span>]);</div><div class="line">	    Scanner scan = <span class="keyword">new</span> Scanner(f);</div><div class="line"></div><div class="line">	    Queue&lt;Integer&gt; q = <span class="keyword">new</span> LinkedList&lt;Integer&gt;();</div><div class="line">	    <span class="keyword">while</span> (scan.hasNextInt())&#123;</div><div class="line">		q.add(scan.nextInt());</div><div class="line">	    &#125;</div><div class="line"></div><div class="line">	    <span class="keyword">int</span>[] array = <span class="keyword">new</span> <span class="keyword">int</span>[q.size()];</div><div class="line"></div><div class="line">	    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; q.size(); i++)&#123;</div><div class="line">		array[i] = q.remove();</div><div class="line">	    &#125;</div><div class="line">	&#125; <span class="keyword">catch</span> (FileNotFoundException e)&#123;</div><div class="line">	    System.out.println(<span class="string">"File not found."</span>);</div><div class="line">	&#125; <span class="keyword">catch</span> (ArrayIndexOutOfBoundsException e)&#123;</div><div class="line">	    System.out.println(<span class="string">"Please enter a file name."</span>);</div><div class="line">	&#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<hr>
+<p><strong><em>关于 Queue 的讨论就到这里<br>以上内容如有疏漏或不足之处，欢迎与我讨论<br>邮箱：entropy714@gmail.com<br>微信：cobain0714</em></strong></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/15/Java-Collection-Set-4-Map/" rel="next" title="Java Collection | Set 4 (Map)">
+                <i class="fa fa-chevron-left"></i> Java Collection | Set 4 (Map)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Content
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://upload.wikimedia.org/wikipedia/en/0/0c/Velvet_Underground_and_Nico.jpg"
+               alt="Kurt" />
+          <p class="site-author-name" itemprop="name">Kurt</p>
+           
+              <p class="site-description motion-element" itemprop="description">Lust For Life</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">Posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Kurt-Yu" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">Implementing Queue using Array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">Implementing Queue using LinkedList</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">Implementing Queue using Stack</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kurt</span>
+</div>
+
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
