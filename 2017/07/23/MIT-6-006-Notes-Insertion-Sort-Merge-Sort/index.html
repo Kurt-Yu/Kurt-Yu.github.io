@@ -1,0 +1,727 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="Chinese">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Algorithms," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="最近在学习 MIT 的算法课：Introduction to Algorihtms地址在这里，打算对着《CLRS》把这门课跟完顺手写一些笔记，放在这里，以供日后复习查阅 这一篇文章对应的是6.006中 Lecture 3 的内容包括了 Insertion Sort &amp;amp; Merge Sort下面就来一一分析 Insertion SortFor i = 1, 2, …., n&amp;nbsp;&amp;nb">
+<meta name="keywords" content="Algorithms">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MIT 6.006 Notes | Insertion Sort &amp; Merge Sort">
+<meta property="og:url" content="http://yoursite.com/2017/07/23/MIT-6-006-Notes-Insertion-Sort-Merge-Sort/index.html">
+<meta property="og:site_name" content="Kurt&#39;s Blog">
+<meta property="og:description" content="最近在学习 MIT 的算法课：Introduction to Algorihtms地址在这里，打算对着《CLRS》把这门课跟完顺手写一些笔记，放在这里，以供日后复习查阅 这一篇文章对应的是6.006中 Lecture 3 的内容包括了 Insertion Sort &amp;amp; Merge Sort下面就来一一分析 Insertion SortFor i = 1, 2, …., n&amp;nbsp;&amp;nb">
+<meta property="og:image" content="http://interactivepython.org/courselib/static/pythonds/_images/insertionsort.png">
+<meta property="og:image" content="http://www.geeksforgeeks.org/wp-content/uploads/gq/2013/03/Merge-Sort.png">
+<meta property="og:image" content="https://www2.hawaii.edu/~janst/311/Notes/Topic-02/recurrence-tree-mergesort-3.jpg">
+<meta property="og:updated_time" content="2017-07-23T10:49:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MIT 6.006 Notes | Insertion Sort &amp; Merge Sort">
+<meta name="twitter:description" content="最近在学习 MIT 的算法课：Introduction to Algorihtms地址在这里，打算对着《CLRS》把这门课跟完顺手写一些笔记，放在这里，以供日后复习查阅 这一篇文章对应的是6.006中 Lecture 3 的内容包括了 Insertion Sort &amp;amp; Merge Sort下面就来一一分析 Insertion SortFor i = 1, 2, …., n&amp;nbsp;&amp;nb">
+<meta name="twitter:image" content="http://interactivepython.org/courselib/static/pythonds/_images/insertionsort.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/23/MIT-6-006-Notes-Insertion-Sort-Merge-Sort/"/>
+
+
+
+
+
+  <title>MIT 6.006 Notes | Insertion Sort & Merge Sort | Kurt's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="Chinese">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Kurt's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">随手记录自己的学习过程</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/23/MIT-6-006-Notes-Insertion-Sort-Merge-Sort/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kurt">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://upload.wikimedia.org/wikipedia/en/0/0c/Velvet_Underground_and_Nico.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kurt's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MIT 6.006 Notes | Insertion Sort & Merge Sort</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-23T20:48:54+10:00">
+                2017-07-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近在学习 MIT 的算法课：Introduction to Algorihtms<br>地址在<a href="https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-006-introduction-to-algorithms-fall-2011/" target="_blank" rel="external">这里</a>，打算对着《CLRS》把这门课跟完<br>顺手写一些笔记，放在这里，以供日后复习查阅</p>
+<p>这一篇文章对应的是6.006中 Lecture 3 的内容<br>包括了 Insertion Sort &amp; Merge Sort<br>下面就来一一分析</p>
+<p></p><h2>Insertion Sort</h2><br>For i = 1, 2, …., n<br>&nbsp;&nbsp;&nbsp;&nbsp;Insert A[i] into sorted array A[0 : n - 1]<br>&nbsp;&nbsp;&nbsp;&nbsp;by pairwise swaps down to the correct position<p></p>
+<p><img src="http://interactivepython.org/courselib/static/pythonds/_images/insertionsort.png" alt="Insertion Sort"><br>Image Source: <a href="http://interactivepython.org/courselib/static/pythonds/SortSearch/TheInsertionSort.html" target="_blank" rel="external">http://interactivepython.org/courselib/static/pythonds/SortSearch/TheInsertionSort.html</a></p>
+<p>这里要向大家推荐一个很好用的算法可视化网站：<a href="https://visualgo.net/en" target="_blank" rel="external">https://visualgo.net/en</a><br>里面有常用的数据结构和算法，并以动画的形式展现出来</p>
+<p>对于 Insertion Sort，这里给出了它的伪代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">repeat (numOfElements - <span class="number">1</span>) times</div><div class="line">  set the first unsorted element as the minimum</div><div class="line">  <span class="keyword">for</span> each of the unsorted elements</div><div class="line">    <span class="keyword">if</span> element &lt; currentMinimum</div><div class="line">      set element as <span class="keyword">new</span> minimum</div><div class="line">  swap minimum with first unsorted position</div></pre></td></tr></table></figure></p>
+<p>Java 实现如下<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InsertionSort</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(<span class="keyword">int</span>[] array)</span></span>&#123;</div><div class="line">        <span class="keyword">int</span> len = array.length;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; len; i++)&#123;</div><div class="line">            <span class="keyword">int</span> key = array[i];</div><div class="line">            <span class="keyword">int</span> j = i - <span class="number">1</span>;</div><div class="line"></div><div class="line">            <span class="keyword">while</span> (j &gt;= <span class="number">0</span> &amp;&amp; array[j] &gt; key)&#123;</div><div class="line">                array[j + <span class="number">1</span>] = array[j];</div><div class="line">                j = j - <span class="number">1</span>;</div><div class="line">            &#125;</div><div class="line">            array[j + <span class="number">1</span>] = key;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">        <span class="keyword">int</span>[] array = &#123;<span class="number">12</span>, <span class="number">11</span>, <span class="number">13</span>, <span class="number">5</span>, <span class="number">6</span>&#125;;</div><div class="line">        sort(array);</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; array.length; i++)&#123;</div><div class="line">            System.out.print(array[i] + <span class="string">" "</span>);</div><div class="line">        &#125;</div><div class="line">        System.out.println();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>下面来稍微分析一下这个算法<br>我们从 array 的第二项开始，即把 array<a href="http://interactivepython.org/courselib/static/pythonds/_images/insertionsort.png" target="_blank" rel="external">1</a> 当成 key<br>一直遍历到 array[n - 1]，一共有 n - 1 项, 即&theta;(n)<br>对每一项来说，最坏情况是它比前面已经 sort 好了的 element 都要小<br>即与前面的每一项都要进行 compare &amp; swap，也为 &theta;(n)<br>时间复杂为 O(n^2)</p>
+<p>注意上面我们所说的这个步骤：<code>compare &amp; swap</code>, 如果 compare<br>的时间花费远大于 swap<br>那么我们要思考有没有一种方式来减少 compare 的时间花费？<br>答案是 binary search，对于每个 key，在前面已经 sorted 的 array 里用 binary search<br>这样可以把时间复杂度降为 O(nlgn)</p>
+<p>注意这里所说的 O(nlgn) 是对 compare 来说的<br>swap 仍然花费 O(n^2), 因为在数组这种数据结构里，元素是相邻的</p>
+<p></p><h2>Merge Sort</h2><br>Merge Sort 体现了 Divide &amp; Conqure 的思想<p></p>
+<p><img src="http://www.geeksforgeeks.org/wp-content/uploads/gq/2013/03/Merge-Sort.png" alt="Merge Sort"><br>Image Source: <a href="http://www.geeksforgeeks.org/merge-sort/" target="_blank" rel="external">http://www.geeksforgeeks.org/merge-sort/</a></p>
+<p>Merge Sort 可视化演示：<a href="https://visualgo.net/en/sorting" target="_blank" rel="external">https://visualgo.net/en/sorting</a></p>
+<p>Merge Sort 的伪代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">MergeSort(arr[], l,  r)</div><div class="line">If r &gt; l</div><div class="line">     <span class="number">1</span>. Find the middle point to divide the array into two halves:  </div><div class="line">             middle m = (l+r)/<span class="number">2</span></div><div class="line">     <span class="number">2</span>. Call mergeSort <span class="keyword">for</span> first half:   </div><div class="line">             <span class="function">Call <span class="title">mergeSort</span><span class="params">(arr, l, m)</span></span></div><div class="line">     3. Call mergeSort <span class="keyword">for</span> second half:</div><div class="line">             Call <span class="title">mergeSort</span><span class="params">(arr, m+<span class="number">1</span>, r)</span></div><div class="line">     4. Merge the two halves sorted in step 2 and 3:</div><div class="line">             Call <span class="title">merge</span><span class="params">(arr, l, m, r)</span></div></pre></td></tr></table></figure></p>
+<p>Java 代码实现如下<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MergeSort</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span>[] array, <span class="keyword">int</span> l, <span class="keyword">int</span> m, <span class="keyword">int</span> r)</span></span>&#123;</div><div class="line">        <span class="comment">// Find size of wo subarrays to be merged</span></div><div class="line">        <span class="keyword">int</span> leftLength = m -  l + <span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> rightLength = r - m;</div><div class="line"></div><div class="line">        <span class="comment">// Create temp arrays</span></div><div class="line">        <span class="keyword">int</span> L[] = <span class="keyword">new</span> <span class="keyword">int</span>[leftLength];</div><div class="line">        <span class="keyword">int</span> R[] = <span class="keyword">new</span> <span class="keyword">int</span>[rightLength];</div><div class="line"></div><div class="line">        <span class="comment">// Copy data to temp arrays</span></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; leftLength; i++)&#123;</div><div class="line">            L[i] = array[l + i];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; rightLength; i++)&#123;</div><div class="line">            R[i] = array[m + <span class="number">1</span> + i];</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">// Initial indexes od first and second subarrays</span></div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</div><div class="line"></div><div class="line">        <span class="comment">// Initial index of merged subarray array</span></div><div class="line">        <span class="keyword">int</span> k = l;</div><div class="line">        <span class="keyword">while</span> (i &lt; leftLength &amp;&amp; j &lt; rightLength)&#123;</div><div class="line">            <span class="keyword">if</span> (L[i] &lt;= R[j])&#123;</div><div class="line">                array[k] = L[i];</div><div class="line">                i++;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span>&#123;</div><div class="line">                array[k] = R[j];</div><div class="line">                j++;</div><div class="line">            &#125;</div><div class="line">            k++;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">// Copy remaining elements of L[] or R[] if any</span></div><div class="line">        <span class="keyword">while</span> (i &lt; leftLength)&#123;</div><div class="line">            array[k] = L[i];</div><div class="line">            k++;</div><div class="line">            i++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">while</span> (j &lt; rightLength)&#123;</div><div class="line">            array[k] = R[j];</div><div class="line">            k++;</div><div class="line">            j++;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Main function that sorts array[l : r] using merge()</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">sort</span><span class="params">(<span class="keyword">int</span>[] array, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span></span>&#123;</div><div class="line">        <span class="keyword">if</span> (l &lt; r)&#123;</div><div class="line">            <span class="keyword">int</span> m = (l + r) / <span class="number">2</span>;</div><div class="line">            sort(array, l, m);</div><div class="line">            sort(array, m + <span class="number">1</span>, r);</div><div class="line"></div><div class="line">            merge(array, l, m, r);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printArray</span><span class="params">(<span class="keyword">int</span>[] array)</span></span>&#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; array.length; i++)&#123;</div><div class="line">            System.out.print(array[i] + <span class="string">" "</span>);</div><div class="line">        &#125;</div><div class="line">        System.out.println();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">        <span class="keyword">int</span>[] array = &#123;<span class="number">12</span>, <span class="number">11</span>, <span class="number">13</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>&#125;;</div><div class="line">        System.out.println(<span class="string">"Given array:"</span>);</div><div class="line">        printArray(array);</div><div class="line"></div><div class="line">        MergeSort m = <span class="keyword">new</span> MergeSort();</div><div class="line"></div><div class="line">        m.sort(array, <span class="number">0</span>, array.length - <span class="number">1</span>);</div><div class="line">        System.out.println(<span class="string">"Sorted array: "</span>);</div><div class="line">        printArray(array);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>下面我们来分析一下这个代码，把关注点放在时间和空间的话费上</p>
+<p>首先我们可以根据整个流程分析出以下式子：<code>T(n) = C1 + T(n/2) + cn</code><br><code>C1</code> is Divide time, <code>cn</code> is Merge time</p>
+<p><img src="https://www2.hawaii.edu/~janst/311/Notes/Topic-02/recurrence-tree-mergesort-3.jpg" alt="Merge sort"><br>Image Source: <a href="https://www2.hawaii.edu/~janst/311/Notes/Topic-02.html" target="_blank" rel="external">https://www2.hawaii.edu/~janst/311/Notes/Topic-02.html</a><br>对这个树来说，高度为 1 + lgn, 一共有 n leaves<br>每一层花费的时间都是 cn<br>所以总时间是 T(n) = (1 + lgn) * cn, 即&theta;(nlgn)<br>空间方面：<code>Auxiliary Space: O(n)</code></p>
+<p><strong>Merge Sort vs Insertion Sort</strong><br>虽然 Merge Sort 花费 O(nlgn) 时间，而 Insertion Sort 花费 O(n^2)<br>但在常数 c 上两者还是有很大区别的<br>事实上，在 Python 中，Merge Sort Running Time：<code>2.2 nlgn</code><br>Insertion Sort Running Time: <code>0.2n^2</code><br>可见，当 n 较小时，用 Insertion Sort 是比较好的选择</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Algorithms/" rel="tag"># Algorithms</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/16/数据结构之-Queue/" rel="next" title="Data Structure | Queue">
+                <i class="fa fa-chevron-left"></i> Data Structure | Queue
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Content
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://upload.wikimedia.org/wikipedia/en/0/0c/Velvet_Underground_and_Nico.jpg"
+               alt="Kurt" />
+          <p class="site-author-name" itemprop="name">Kurt</p>
+           
+              <p class="site-description motion-element" itemprop="description">Lust For Life</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">Posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Kurt-Yu" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">Insertion Sort</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">Merge Sort</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kurt</span>
+</div>
+
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
