@@ -103,7 +103,7 @@
 <meta property="og:image" content="http://interactivepython.org/courselib/static/pythonds/_images/insertionsort.png">
 <meta property="og:image" content="http://www.geeksforgeeks.org/wp-content/uploads/gq/2013/03/Merge-Sort.png">
 <meta property="og:image" content="https://www2.hawaii.edu/~janst/311/Notes/Topic-02/recurrence-tree-mergesort-3.jpg">
-<meta property="og:updated_time" content="2017-07-24T07:23:51.000Z">
+<meta property="og:updated_time" content="2017-07-31T05:46:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MIT 6.006 Notes | Insertion Sort &amp; Merge Sort">
 <meta name="twitter:description" content="最近在学习 MIT 的算法课：Introduction to Algorihtms地址在这里，打算对着《CLRS》把这门课跟完顺手写一些笔记，放在这里，以供日后复习查阅 这一篇文章对应的是6.006中 Lecture 3 的内容包括了 Insertion Sort &amp;amp; Merge Sort下面就来一一分析 Insertion SortFor i = 1, 2, …., n&amp;nbsp;&amp;nb">
@@ -358,7 +358,7 @@
       
         <p>最近在学习 MIT 的算法课：Introduction to Algorihtms<br>地址在<a href="https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-006-introduction-to-algorithms-fall-2011/" target="_blank" rel="external">这里</a>，打算对着《CLRS》把这门课跟完<br>顺手写一些笔记，放在这里，以供日后复习查阅</p>
 <p>这一篇文章对应的是6.006中 Lecture 3 的内容<br>包括了 Insertion Sort &amp; Merge Sort<br>下面就来一一分析</p>
-<p></p><h2>Insertion Sort</h2><br>For i = 1, 2, …., n<br>&nbsp;&nbsp;&nbsp;&nbsp;Insert A[i] into sorted array A[0 : n - 1]<br>&nbsp;&nbsp;&nbsp;&nbsp;by pairwise swaps down to the correct position<p></p>
+<h2 id="Insertion-Sort"><a href="#Insertion-Sort" class="headerlink" title="Insertion Sort"></a>Insertion Sort</h2><p>For i = 1, 2, …., n<br>&nbsp;&nbsp;&nbsp;&nbsp;Insert A[i] into sorted array A[0 : n - 1]<br>&nbsp;&nbsp;&nbsp;&nbsp;by pairwise swaps down to the correct position</p>
 <p><img src="http://interactivepython.org/courselib/static/pythonds/_images/insertionsort.png" alt="Insertion Sort"><br>Image Source:<br><a href="http://interactivepython.org/courselib/static/pythonds/SortSearch/TheInsertionSort.html" target="_blank" rel="external">http://interactivepython.org/courselib/static/pythonds/SortSearch/TheInsertionSort.html</a></p>
 <p>这里要向大家推荐一个很好用的算法可视化网站：<a href="https://visualgo.net/en" target="_blank" rel="external">https://visualgo.net/en</a><br>里面有常用的数据结构和算法，并以动画的形式展现出来</p>
 <p>对于 Insertion Sort，这里给出了它的伪代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">repeat (numOfElements - <span class="number">1</span>) times</div><div class="line">  set the first unsorted element as the minimum</div><div class="line">  <span class="keyword">for</span> each of the unsorted elements</div><div class="line">    <span class="keyword">if</span> element &lt; currentMinimum</div><div class="line">      set element as <span class="keyword">new</span> minimum</div><div class="line">  swap minimum with first unsorted position</div></pre></td></tr></table></figure></p>
@@ -366,7 +366,7 @@
 <p>下面来稍微分析一下这个算法<br>我们从 array 的第二项开始，即把 array<a href="http://interactivepython.org/courselib/static/pythonds/_images/insertionsort.png" target="_blank" rel="external">1</a> 当成 key<br>一直遍历到 array[n - 1]，一共有 n - 1 项, 即&theta;(n)<br>对每一项来说，最坏情况是它比前面已经 sort 好了的 element 都要小<br>即与前面的每一项都要进行 compare &amp; swap，也为 &theta;(n)<br>时间复杂为 O(n^2)</p>
 <p>注意上面我们所说的这个步骤：<code>compare &amp; swap</code>, 如果 compare<br>的时间花费远大于 swap<br>那么我们要思考有没有一种方式来减少 compare 的时间花费？<br>答案是 binary search，对于每个 key，在前面已经 sorted 的 array 里用 binary search<br>这样可以把时间复杂度降为 O(nlgn)</p>
 <p>注意这里所说的 O(nlgn) 是对 compare 来说的<br>swap 仍然花费 O(n^2), 因为在数组这种数据结构里，元素是相邻的</p>
-<p></p><h2>Merge Sort</h2><br>Merge Sort 体现了 Divide &amp; Conqure 的思想<p></p>
+<h2 id="Merge-Sort"><a href="#Merge-Sort" class="headerlink" title="Merge Sort"></a>Merge Sort</h2><p>Merge Sort 体现了 Divide &amp; Conqure 的思想</p>
 <p><img src="http://www.geeksforgeeks.org/wp-content/uploads/gq/2013/03/Merge-Sort.png" alt="Merge Sort"><br>Image Source: <a href="http://www.geeksforgeeks.org/merge-sort/" target="_blank" rel="external">http://www.geeksforgeeks.org/merge-sort/</a></p>
 <p>Merge Sort 可视化演示：<a href="https://visualgo.net/en/sorting" target="_blank" rel="external">https://visualgo.net/en/sorting</a></p>
 <p>Merge Sort 的伪代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">MergeSort(arr[], l,  r)</div><div class="line">If r &gt; l</div><div class="line">     <span class="number">1</span>. Find the middle point to divide the array into two halves:  </div><div class="line">             middle m = (l+r)/<span class="number">2</span></div><div class="line">     <span class="number">2</span>. Call mergeSort <span class="keyword">for</span> first half:   </div><div class="line">             <span class="function">Call <span class="title">mergeSort</span><span class="params">(arr, l, m)</span></span></div><div class="line">     3. Call mergeSort <span class="keyword">for</span> second half:</div><div class="line">             Call <span class="title">mergeSort</span><span class="params">(arr, m+<span class="number">1</span>, r)</span></div><div class="line">     4. Merge the two halves sorted in step 2 and 3:</div><div class="line">             Call <span class="title">merge</span><span class="params">(arr, l, m, r)</span></div></pre></td></tr></table></figure></p>
@@ -374,7 +374,7 @@
 <p>下面我们来分析一下这个代码，把关注点放在时间和空间的话费上</p>
 <p>首先我们可以根据整个流程分析出以下式子：<code>T(n) = C1 + T(n/2) + cn</code><br><code>C1</code> is Divide time, <code>cn</code> is Merge time</p>
 <p><img src="https://www2.hawaii.edu/~janst/311/Notes/Topic-02/recurrence-tree-mergesort-3.jpg" alt="Merge sort"><br>Image Source: <a href="https://www2.hawaii.edu/~janst/311/Notes/Topic-02.html" target="_blank" rel="external">https://www2.hawaii.edu/~janst/311/Notes/Topic-02.html</a><br>对这个树来说，高度为 1 + lgn, 一共有 n leaves<br>每一层花费的时间都是 cn<br>所以总时间是 T(n) = (1 + lgn) * cn, 即&theta;(nlgn)<br>空间方面：<code>Auxiliary Space: O(n)</code></p>
-<p><strong>Merge Sort vs Insertion Sort</strong><br>虽然 Merge Sort 花费 O(nlgn) 时间，而 Insertion Sort 花费 O(n^2)<br>但在常数 c 上两者还是有很大区别的<br>事实上，在 Python 中，Merge Sort Running Time：<code>2.2 nlgn</code><br>Insertion Sort Running Time: <code>0.2n^2</code><br>可见，当 n 较小时，用 Insertion Sort 是比较好的选择</p>
+<h2 id="Merge-Sort-vs-Insertion-Sort"><a href="#Merge-Sort-vs-Insertion-Sort" class="headerlink" title="Merge Sort vs Insertion Sort"></a>Merge Sort vs Insertion Sort</h2><p>虽然 Merge Sort 花费 O(nlgn) 时间，而 Insertion Sort 花费 O(n^2)<br>但在常数 c 上两者还是有很大区别的<br>事实上，在 Python 中，Merge Sort Running Time：<code>2.2 nlgn</code><br>Insertion Sort Running Time: <code>0.2n^2</code><br>可见，当 n 较小时，用 Insertion Sort 是比较好的选择</p>
 
       
     </div>
@@ -588,7 +588,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">Insertion Sort</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">Merge Sort</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Insertion-Sort"><span class="nav-number">1.</span> <span class="nav-text">Insertion Sort</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Merge-Sort"><span class="nav-number">2.</span> <span class="nav-text">Merge Sort</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Merge-Sort-vs-Insertion-Sort"><span class="nav-number">3.</span> <span class="nav-text">Merge Sort vs Insertion Sort</span></a></li></ol></div>
             
 
           </div>
