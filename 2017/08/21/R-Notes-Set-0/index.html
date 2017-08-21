@@ -1,0 +1,911 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Statistics,R," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="这学期选了一门课，叫 Statistics Test (STAT2912)讲的是各种奇奇怪怪的 test，包括 parametric test &amp;amp; non-parametric test并不喜欢这门课，数学里最讨厌的就是统计和概率论了 最初为什么要选这门课啊 ==__== 简直是作死但现在都第四周了，课也换不了了，只能将就着上了lecture 也是水的很，总共十几个人，lecturer 也">
+<meta name="keywords" content="Statistics,R">
+<meta property="og:type" content="article">
+<meta property="og:title" content="R Notes | Set 0">
+<meta property="og:url" content="http://yoursite.com/2017/08/21/R-Notes-Set-0/index.html">
+<meta property="og:site_name" content="Kurt&#39;s Blog">
+<meta property="og:description" content="这学期选了一门课，叫 Statistics Test (STAT2912)讲的是各种奇奇怪怪的 test，包括 parametric test &amp;amp; non-parametric test并不喜欢这门课，数学里最讨厌的就是统计和概率论了 最初为什么要选这门课啊 ==__== 简直是作死但现在都第四周了，课也换不了了，只能将就着上了lecture 也是水的很，总共十几个人，lecturer 也">
+<meta property="og:updated_time" content="2017-08-21T11:00:19.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="R Notes | Set 0">
+<meta name="twitter:description" content="这学期选了一门课，叫 Statistics Test (STAT2912)讲的是各种奇奇怪怪的 test，包括 parametric test &amp;amp; non-parametric test并不喜欢这门课，数学里最讨厌的就是统计和概率论了 最初为什么要选这门课啊 ==__== 简直是作死但现在都第四周了，课也换不了了，只能将就着上了lecture 也是水的很，总共十几个人，lecturer 也">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/21/R-Notes-Set-0/"/>
+
+
+
+
+
+  <title>R Notes | Set 0 | Kurt's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Kurt's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">We can be heroes, just for one day</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/21/R-Notes-Set-0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kurt">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://images-na.ssl-images-amazon.com/images/I/41gXZIpe5ZL.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kurt's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">R Notes | Set 0</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-21T20:41:24+10:00">
+                2017-08-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/21/R-Notes-Set-0/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/08/21/R-Notes-Set-0/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/08/21/R-Notes-Set-0/" class="leancloud_visitors" data-flag-title="R Notes | Set 0">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这学期选了一门课，叫 Statistics Test (STAT2912)<br>讲的是各种奇奇怪怪的 test，包括 parametric test &amp; non-parametric test<br>并不喜欢这门课，数学里最讨厌的就是统计和概率论了</p>
+<p>最初为什么要选这门课啊 ==__== 简直是作死<br>但现在都第四周了，课也换不了了，只能将就着上了<br>lecture 也是水的很，总共十几个人，lecturer 也是照着念 slides<br>于是就打算自己学了，从 Youtube 上找了一系列的 R 视频<br><a href="https://www.youtube.com/watch?v=riONFzJdXcs&amp;list=PLqzoL9-eJTNBDdKgJgJzaQcY6OXmsXAHU" target="_blank" rel="external">地址在这里</a>，同时也记一些笔记，放到这里<br>这是这个系列笔记的第一篇</p>
+<h2 id="R-Basic"><a href="#R-Basic" class="headerlink" title="R Basic"></a>R Basic</h2><figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div></pre></td><td class="code"><pre><div class="line">&gt; x = <span class="number">11</span>  <span class="comment"># or use an arrow to assign variables</span></div><div class="line">&gt; x &lt;- <span class="number">11</span></div><div class="line">&gt; print(x)  <span class="comment"># or just type the variable name</span></div><div class="line">&gt; x   <span class="comment"># gives 11</span></div><div class="line">&gt; X</div><div class="line">&gt; 错误: 找不到对象<span class="string">'X'</span>  <span class="comment"># R 里是区分大小写的</span></div><div class="line">&gt; y &lt;- <span class="number">7</span></div><div class="line">&gt; y</div><div class="line"> [<span class="number">1</span>] <span class="number">7</span></div><div class="line">&gt; ls()  <span class="comment"># ls() 用来查看当前 memory 中的变量</span></div><div class="line"> [<span class="number">1</span>] <span class="string">"x"</span> <span class="string">"y"</span></div><div class="line">&gt; 1x &lt;- <span class="number">22</span></div><div class="line">错误: unexpected symbol <span class="keyword">in</span> <span class="string">"1x"</span>  <span class="comment"># 在 R 中，不能以数字开头作为变量名</span></div><div class="line">&gt;</div><div class="line">&gt; xx &lt;- <span class="string">"Kurt"</span> <span class="comment"># 字符串以双引号括起来</span></div><div class="line">&gt; xx</div><div class="line"> [<span class="number">1</span>] <span class="string">"Kurt"</span></div><div class="line">&gt; yy &lt;- <span class="string">"1"</span></div><div class="line">&gt; yy</div><div class="line"> [<span class="number">1</span>] <span class="string">"1"</span></div><div class="line">&gt; <span class="number">11</span> + <span class="number">14</span>  <span class="comment"># 基本的算术运算</span></div><div class="line"> [<span class="number">1</span>] <span class="number">25</span></div><div class="line">&gt; <span class="number">7</span> * <span class="number">9</span></div><div class="line"> [<span class="number">1</span>] <span class="number">63</span></div><div class="line">&gt;</div><div class="line">&gt; x + y  <span class="comment"># 以变量为基础进行算术运算</span></div><div class="line"> [<span class="number">1</span>] <span class="number">20</span></div><div class="line">&gt; z &lt;- x + y</div><div class="line">&gt; z</div><div class="line"> [<span class="number">1</span>] <span class="number">20</span></div><div class="line">&gt; x - y</div><div class="line"> [<span class="number">1</span>] <span class="number">2</span></div><div class="line">&gt; x * y</div><div class="line"> [<span class="number">1</span>] <span class="number">99</span></div><div class="line">&gt; x / y</div><div class="line"> [<span class="number">1</span>] <span class="number">1.222222</span></div><div class="line">&gt; y ^ <span class="number">2</span>  <span class="comment"># 平方</span></div><div class="line"> [<span class="number">1</span>] <span class="number">81</span></div><div class="line">&gt; x ^ <span class="number">2</span> + y ^ <span class="number">2</span></div><div class="line"> [<span class="number">1</span>] <span class="number">202</span></div><div class="line">&gt;</div><div class="line">&gt;</div><div class="line">&gt; sqrt(y)  <span class="comment"># square root</span></div><div class="line"> [<span class="number">1</span>] <span class="number">3</span></div><div class="line">&gt; y^(<span class="number">1</span>/<span class="number">2</span>)  <span class="comment"># the same effect as square root</span></div><div class="line"> [<span class="number">1</span>] <span class="number">3</span></div><div class="line">&gt; log(y)  <span class="comment"># base 10</span></div><div class="line"> [<span class="number">1</span>] <span class="number">2.197225</span></div><div class="line">&gt; exp(y)  % exponential</div><div class="line"> [<span class="number">1</span>] <span class="number">8103.084</span></div><div class="line">&gt; log2(y)   <span class="comment"># base 2</span></div><div class="line"> [<span class="number">1</span>] <span class="number">3.169925</span></div><div class="line">&gt; abs(-<span class="number">14</span>)  <span class="comment"># absolute value</span></div><div class="line"> [<span class="number">1</span>] <span class="number">14</span></div><div class="line">&gt;</div><div class="line">&gt;</div><div class="line">&gt; x1 &lt;- c(<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">9</span>) <span class="comment"># create a brunch of numbers</span></div><div class="line">&gt; x1</div><div class="line"> [<span class="number">1</span>] <span class="number">1</span> <span class="number">3</span> <span class="number">5</span> <span class="number">7</span> <span class="number">9</span></div><div class="line">&gt; gender &lt;- c(<span class="string">"male"</span>, <span class="string">"female"</span>) <span class="comment"># create a brunch of strings</span></div><div class="line">&gt; gender</div><div class="line"> [<span class="number">1</span>] <span class="string">"male"</span>   <span class="string">"female"</span></div><div class="line">&gt;</div><div class="line">&gt;</div><div class="line">&gt; <span class="number">2</span>:<span class="number">7</span>   <span class="comment"># 冒号表示从某个数字到某个数字的所有值</span></div><div class="line"> [<span class="number">1</span>] <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span> <span class="number">6</span> <span class="number">7</span></div><div class="line">&gt; seq(from=<span class="number">1</span>, to=<span class="number">7</span>, by=<span class="number">1</span>) <span class="comment"># seq() take three parameters, from, to, by (increment by some value)</span></div><div class="line"> [<span class="number">1</span>] <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span> <span class="number">6</span> <span class="number">7</span></div><div class="line">&gt; seq(from=<span class="number">1</span>, to=<span class="number">7</span>, by=<span class="number">0.25</span>)</div><div class="line"> [<span class="number">1</span>] <span class="number">1.00</span> <span class="number">1.25</span> <span class="number">1.50</span> <span class="number">1.75</span> <span class="number">2.00</span> <span class="number">2.25</span> <span class="number">2.50</span> <span class="number">2.75</span> <span class="number">3.00</span> <span class="number">3.25</span> <span class="number">3.50</span> <span class="number">3.75</span> <span class="number">4.00</span> <span class="number">4.25</span> <span class="number">4.50</span> <span class="number">4.75</span> <span class="number">5.00</span></div><div class="line">[<span class="number">18</span>] <span class="number">5.25</span> <span class="number">5.50</span> <span class="number">5.75</span> <span class="number">6.00</span> <span class="number">6.25</span> <span class="number">6.50</span> <span class="number">6.75</span> <span class="number">7.00</span></div><div class="line">&gt; rep(<span class="number">1</span>, times=<span class="number">10</span>)  <span class="comment"># rep(), the first para is the value we want to repeat, the second is the repeat time</span></div><div class="line"> [<span class="number">1</span>] <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span></div><div class="line">&gt; rep(<span class="string">"Kurt"</span>, times=<span class="number">5</span>)</div><div class="line"> [<span class="number">1</span>] <span class="string">"Kurt"</span> <span class="string">"Kurt"</span> <span class="string">"Kurt"</span> <span class="string">"Kurt"</span> <span class="string">"Kurt"</span></div><div class="line">&gt; rep(<span class="number">1</span>:<span class="number">3</span>, times=<span class="number">5</span>)</div><div class="line"> [<span class="number">1</span>] <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span></div><div class="line">&gt; rep(c(<span class="string">"n"</span>, <span class="string">"f"</span>), times=<span class="number">5</span>)</div><div class="line"> [<span class="number">1</span>] <span class="string">"n"</span> <span class="string">"f"</span> <span class="string">"n"</span> <span class="string">"f"</span> <span class="string">"n"</span> <span class="string">"f"</span> <span class="string">"n"</span> <span class="string">"f"</span> <span class="string">"n"</span> <span class="string">"f"</span></div></pre></td></tr></table></figure>
+<p><strong>if two vectors are of the same length, we may add/subtract/multiply/divide corresponding elements </strong><br><figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&gt; x</div><div class="line">[<span class="number">1</span>] <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span></div><div class="line">&gt; y</div><div class="line">[<span class="number">1</span>] <span class="number">1</span> <span class="number">3</span> <span class="number">5</span> <span class="number">7</span> <span class="number">9</span></div><div class="line">&gt; x + <span class="number">7</span></div><div class="line">[<span class="number">1</span>]  <span class="number">8</span>  <span class="number">9</span> <span class="number">10</span> <span class="number">11</span> <span class="number">12</span></div><div class="line">&gt; x + y</div><div class="line">[<span class="number">1</span>]  <span class="number">2</span>  <span class="number">5</span>  <span class="number">8</span> <span class="number">11</span> <span class="number">14</span></div><div class="line">&gt; x - y</div><div class="line">[<span class="number">1</span>]  <span class="number">0</span> -<span class="number">1</span> -<span class="number">2</span> -<span class="number">3</span> -<span class="number">4</span></div><div class="line">&gt; x * y</div><div class="line">[<span class="number">1</span>]  <span class="number">1</span>  <span class="number">6</span> <span class="number">15</span> <span class="number">28</span> <span class="number">45</span></div><div class="line">&gt; x / y</div><div class="line">[<span class="number">1</span>] <span class="number">1.0000000</span> <span class="number">0.6666667</span> <span class="number">0.6000000</span> <span class="number">0.5714286</span> <span class="number">0.5555556</span></div></pre></td></tr></table></figure></p>
+<p><strong>由“索引”来取值，用方括号表示 [ ], 其中负号代表“除此以外”</strong><br><figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&gt; y[<span class="number">3</span>]</div><div class="line">[<span class="number">1</span>] <span class="number">5</span></div><div class="line">&gt; y[-<span class="number">3</span>]</div><div class="line">[<span class="number">1</span>] <span class="number">1</span> <span class="number">3</span> <span class="number">7</span> <span class="number">9</span></div><div class="line">&gt; y[<span class="number">1</span>:<span class="number">3</span>]</div><div class="line">[<span class="number">1</span>] <span class="number">1</span> <span class="number">3</span> <span class="number">5</span></div><div class="line">&gt; y[c(<span class="number">1</span>,<span class="number">5</span>)]</div><div class="line">[<span class="number">1</span>] <span class="number">1</span> <span class="number">9</span></div><div class="line">&gt; y[-c(<span class="number">1</span>,<span class="number">5</span>)]</div><div class="line">[<span class="number">1</span>] <span class="number">3</span> <span class="number">5</span> <span class="number">7</span></div><div class="line">&gt; y[y&lt;<span class="number">6</span>]</div><div class="line">[<span class="number">1</span>] <span class="number">1</span> <span class="number">3</span> <span class="number">5</span></div></pre></td></tr></table></figure></p>
+<p><strong>关于 Matrix 的一些操纵</strong><br><figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">&gt; matrix(c(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>), nrow = <span class="number">3</span>,byrow = <span class="literal">TRUE</span>)</div><div class="line">     [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>]</div><div class="line">[<span class="number">1</span>,]    <span class="number">1</span>    <span class="number">2</span>    <span class="number">3</span></div><div class="line">[<span class="number">2</span>,]    <span class="number">4</span>    <span class="number">5</span>    <span class="number">6</span></div><div class="line">[<span class="number">3</span>,]    <span class="number">7</span>    <span class="number">8</span>    <span class="number">9</span></div><div class="line">&gt; matrix(c(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>), nrow = <span class="number">3</span>,byrow = <span class="literal">FALSE</span>)</div><div class="line">     [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>]</div><div class="line">[<span class="number">1</span>,]    <span class="number">1</span>    <span class="number">4</span>    <span class="number">7</span></div><div class="line">[<span class="number">2</span>,]    <span class="number">2</span>    <span class="number">5</span>    <span class="number">8</span></div><div class="line">[<span class="number">3</span>,]    <span class="number">3</span>    <span class="number">6</span>    <span class="number">9</span></div><div class="line">&gt; mat = matrix(c(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>), nrow = <span class="number">3</span>,byrow = <span class="literal">FALSE</span>)</div><div class="line">&gt; mat</div><div class="line">     [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>]</div><div class="line">[<span class="number">1</span>,]    <span class="number">1</span>    <span class="number">4</span>    <span class="number">7</span></div><div class="line">[<span class="number">2</span>,]    <span class="number">2</span>    <span class="number">5</span>    <span class="number">8</span></div><div class="line">[<span class="number">3</span>,]    <span class="number">3</span>    <span class="number">6</span>    <span class="number">9</span></div><div class="line">&gt; mat[<span class="number">1</span>,<span class="number">2</span>]   <span class="comment"># 取出第一行，第二列的元素</span></div><div class="line">[<span class="number">1</span>] <span class="number">4</span></div><div class="line">&gt; mat[c(<span class="number">1</span>,<span class="number">3</span>),<span class="number">2</span>]   <span class="comment"># 分别取出第一行和第三行的第二列的元素</span></div><div class="line">[<span class="number">1</span>] <span class="number">4</span> <span class="number">6</span></div><div class="line">&gt; mat[<span class="number">2</span>,]  <span class="comment"># 取出第二行，第二个参数为空表示全选</span></div><div class="line">[<span class="number">1</span>] <span class="number">2</span> <span class="number">5</span> <span class="number">8</span></div><div class="line">&gt; mat[,<span class="number">1</span>]  <span class="comment"># 取出第一列，第一个参数为空表示全选</span></div><div class="line">[<span class="number">1</span>] <span class="number">1</span> <span class="number">2</span> <span class="number">3</span></div><div class="line">&gt; mat*<span class="number">10</span>   <span class="comment"># matrix 里的每个元素乘以10</span></div><div class="line">     [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>]</div><div class="line">[<span class="number">1</span>,]   <span class="number">10</span>   <span class="number">40</span>   <span class="number">70</span></div><div class="line">[<span class="number">2</span>,]   <span class="number">20</span>   <span class="number">50</span>   <span class="number">80</span></div><div class="line">[<span class="number">3</span>,]   <span class="number">30</span>   <span class="number">60</span>   <span class="number">90</span></div></pre></td></tr></table></figure></p>
+<h2 id="Reading-File"><a href="#Reading-File" class="headerlink" title="Reading File"></a>Reading File</h2><figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt; LungCapData = read.table(file.choose(), header=<span class="literal">T</span>, sep=<span class="string">"\t"</span>)</div><div class="line">&gt; LungCapData[c(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>),]</div><div class="line">  LungCap Age Height Smoke Gender Caesarean</div><div class="line"><span class="number">1</span>   <span class="number">6.475</span>   <span class="number">6</span>   <span class="number">62.1</span>    no   male        no</div><div class="line"><span class="number">2</span>  <span class="number">10.125</span>  <span class="number">18</span>   <span class="number">74.7</span>   yes female        no</div><div class="line"><span class="number">3</span>   <span class="number">9.550</span>  <span class="number">16</span>   <span class="number">69.7</span>    no female       yes</div><div class="line"><span class="number">4</span>  <span class="number">11.125</span>  <span class="number">14</span>   <span class="number">71.0</span>    no   male        no</div></pre></td></tr></table></figure>
+<p>其中 read.table(file.choose(), header=T, sep=”\t”) 是读入文件一般格式。<br>第一个参数是选要读入的文件，一般是 file=””, 然后双引号里写文件目录。也可以直接写 file.choose(), 此时会弹出来一个窗口，允许用户选择文件。<br>第二个参数是 header，T 代表 TRUE<br>第三个参数是 sep，代表该文件里的内容是以什么分隔的，“\t” 表示这是一个以 tab 分隔的文件，文件名以 .txt 结尾<br>也有 sep=”,” 表示以逗号分隔，是 CSV 文件</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">&gt; head(LungCapData)</div><div class="line">  LungCap Age Height Smoke Gender Caesarean</div><div class="line"><span class="number">1</span>   <span class="number">6.475</span>   <span class="number">6</span>   <span class="number">62.1</span>    no   male        no</div><div class="line"><span class="number">2</span>  <span class="number">10.125</span>  <span class="number">18</span>   <span class="number">74.7</span>   yes female        no</div><div class="line"><span class="number">3</span>   <span class="number">9.550</span>  <span class="number">16</span>   <span class="number">69.7</span>    no female       yes</div><div class="line"><span class="number">4</span>  <span class="number">11.125</span>  <span class="number">14</span>   <span class="number">71.0</span>    no   male        no</div><div class="line"><span class="number">5</span>   <span class="number">4.800</span>   <span class="number">5</span>   <span class="number">56.9</span>    no   male        no</div><div class="line"><span class="number">6</span>   <span class="number">6.225</span>  <span class="number">11</span>   <span class="number">58.7</span>    no female        no</div><div class="line">&gt; tail(LungCapData)</div><div class="line">    LungCap Age Height Smoke Gender Caesarean</div><div class="line"><span class="number">720</span>   <span class="number">7.325</span>   <span class="number">9</span>   <span class="number">66.3</span>    no   male        no</div><div class="line"><span class="number">721</span>   <span class="number">5.725</span>   <span class="number">9</span>   <span class="number">56.0</span>    no female        no</div><div class="line"><span class="number">722</span>   <span class="number">9.050</span>  <span class="number">18</span>   <span class="number">72.0</span>   yes   male       yes</div><div class="line"><span class="number">723</span>   <span class="number">3.850</span>  <span class="number">11</span>   <span class="number">60.5</span>   yes female        no</div><div class="line"><span class="number">724</span>   <span class="number">9.825</span>  <span class="number">15</span>   <span class="number">64.9</span>    no female        no</div><div class="line"><span class="number">725</span>   <span class="number">7.100</span>  <span class="number">10</span>   <span class="number">67.7</span>    no   male        no</div><div class="line">&gt; LungCapData[<span class="number">1</span>:<span class="number">6</span>,]</div><div class="line">  LungCap Age Height Smoke Gender Caesarean</div><div class="line"><span class="number">1</span>   <span class="number">6.475</span>   <span class="number">6</span>   <span class="number">62.1</span>    no   male        no</div><div class="line"><span class="number">2</span>  <span class="number">10.125</span>  <span class="number">18</span>   <span class="number">74.7</span>   yes female        no</div><div class="line"><span class="number">3</span>   <span class="number">9.550</span>  <span class="number">16</span>   <span class="number">69.7</span>    no female       yes</div><div class="line"><span class="number">4</span>  <span class="number">11.125</span>  <span class="number">14</span>   <span class="number">71.0</span>    no   male        no</div><div class="line"><span class="number">5</span>   <span class="number">4.800</span>   <span class="number">5</span>   <span class="number">56.9</span>    no   male        no</div><div class="line"><span class="number">6</span>   <span class="number">6.225</span>  <span class="number">11</span>   <span class="number">58.7</span>    no female        no</div></pre></td></tr></table></figure>
+<p>head() 会给出数据的前几行<br>tail() 会给出数据的后几行<br><figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt; LungCapData[-(<span class="number">4</span>:<span class="number">722</span>),]</div><div class="line">    LungCap Age Height Smoke Gender Caesarean</div><div class="line"><span class="number">1</span>     <span class="number">6.475</span>   <span class="number">6</span>   <span class="number">62.1</span>    no   male        no</div><div class="line"><span class="number">2</span>    <span class="number">10.125</span>  <span class="number">18</span>   <span class="number">74.7</span>   yes female        no</div><div class="line"><span class="number">3</span>     <span class="number">9.550</span>  <span class="number">16</span>   <span class="number">69.7</span>    no female       yes</div><div class="line"><span class="number">723</span>   <span class="number">3.850</span>  <span class="number">11</span>   <span class="number">60.5</span>   yes female        no</div><div class="line"><span class="number">724</span>   <span class="number">9.825</span>  <span class="number">15</span>   <span class="number">64.9</span>    no female        no</div><div class="line"><span class="number">725</span>   <span class="number">7.100</span>  <span class="number">10</span>   <span class="number">67.7</span>    no   male        no</div></pre></td></tr></table></figure></p>
+<p>LungCapData[-(4:722),] 给出了除第4行到第722行以外的所有数据<br><figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt; names(LungCapData)</div><div class="line">[<span class="number">1</span>] <span class="string">"LungCap"</span>   <span class="string">"Age"</span>       <span class="string">"Height"</span>    <span class="string">"Smoke"</span>     <span class="string">"Gender"</span>    <span class="string">"Caesarean"</span></div><div class="line">&gt; mean(Age)</div><div class="line">Error <span class="keyword">in</span> mean(Age) : 找不到对象<span class="string">'Age'</span></div></pre></td></tr></table></figure></p>
+<p>names() 给出了各个列的名称<br>mean(Age) 这一行报错是因为在 R 的内存中并没有 “Age” 这个变量<br>“Age” 目前还只存在于 LungCapData 这个 Data Set 中<br>如果想 access “Age”，有两种方法<br><figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt; mean(LungCapData$Age)</div><div class="line">[<span class="number">1</span>] <span class="number">12.3269</span></div><div class="line">&gt; mean(Age)</div><div class="line">Error <span class="keyword">in</span> mean(Age) : 找不到对象<span class="string">'Age'</span></div></pre></td></tr></table></figure></p>
+<p>这是第一种方法，使用 $ 符号来 access 这个变量<br>值得注意的是，mean(Age) 仍然报错，是因为我们只是 access “Age”<br>它还没有在 memory 中<br>另一种方法是把数据 attach 到 memory 中<br><figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="keyword">attach</span>(LungCapData)</div><div class="line">&gt; Age[<span class="number">1</span>:<span class="number">5</span>]</div><div class="line">[<span class="number">1</span>]  <span class="number">6</span> <span class="number">18</span> <span class="number">16</span> <span class="number">14</span>  <span class="number">5</span></div><div class="line">&gt; <span class="keyword">detach</span>(LungCapData)</div><div class="line">&gt; Age</div><div class="line">错误: 找不到对象<span class="string">'Age'</span></div></pre></td></tr></table></figure></p>
+<p>当我们 attach LungCapData 后，memory 里就有了 LungCapData 对象<br>此时当我们直接输入 Age 时，就可以 access 它了<br>同时，也可以使用 detach 语句来清除 memory 中的 LungCapData</p>
+<p>使用 class() 语句可以看该数据是什么类型的<br><figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&gt; class(LungCapData)</div><div class="line">[<span class="number">1</span>] <span class="string">"data.frame"</span></div><div class="line">&gt; class(LungCap)</div><div class="line">[<span class="number">1</span>] <span class="string">"numeric"</span></div><div class="line">&gt; class(Age)</div><div class="line">[<span class="number">1</span>] <span class="string">"integer"</span></div><div class="line">&gt; class(Height)</div><div class="line">[<span class="number">1</span>] <span class="string">"numeric"</span></div><div class="line">&gt; class(Smoke)</div><div class="line">[<span class="number">1</span>] <span class="string">"factor"</span></div><div class="line">&gt; class(Gender)</div><div class="line">[<span class="number">1</span>] <span class="string">"factor"</span></div><div class="line">&gt; class(Caesarean)</div><div class="line">[<span class="number">1</span>] <span class="string">"factor"</span></div></pre></td></tr></table></figure></p>
+<p>如上面的代码，有 numeric, integer, factor … 类型的数据<br>对于 factor 类型的数据来说，可以使用 level() 语句来看它不同的值<br><figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt; levels(Smoke)</div><div class="line">[<span class="number">1</span>] <span class="string">"no"</span>  <span class="string">"yes"</span></div><div class="line">&gt; levels(Gender)</div><div class="line">[<span class="number">1</span>] <span class="string">"female"</span> <span class="string">"male"</span></div></pre></td></tr></table></figure></p>
+<p>summary() 语句可以给出 data set 的 summary<br>如 mean, median, max 等基本信息<br><figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&gt; summary(LungCapData)</div><div class="line">    LungCap            Age            Height      Smoke        Gender    Caesarean</div><div class="line"> Min.   : <span class="number">0.507</span>   Min.   : <span class="number">3.00</span>   Min.   :<span class="number">45.30</span>   no :<span class="number">648</span>   female:<span class="number">358</span>   no :<span class="number">561</span>  </div><div class="line"> 1st Qu.: <span class="number">6.150</span>   1st Qu.: <span class="number">9.00</span>   1st Qu.:<span class="number">59.90</span>   yes: <span class="number">77</span>   male  :<span class="number">367</span>   yes:<span class="number">164</span>  </div><div class="line"> Median : <span class="number">8.000</span>   Median :<span class="number">13.00</span>   Median :<span class="number">65.40</span>                                   </div><div class="line"> Mean   : <span class="number">7.863</span>   Mean   :<span class="number">12.33</span>   Mean   :<span class="number">64.84</span>                                   </div><div class="line"> 3rd Qu.: <span class="number">9.800</span>   3rd Qu.:<span class="number">15.00</span>   3rd Qu.:<span class="number">70.30</span>                                   </div><div class="line"> Max.   :<span class="number">14.675</span>   Max.   :<span class="number">19.00</span>   Max.   :<span class="number">81.80</span>                                   </div><div class="line">&gt; x &lt;- c(<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>)</div><div class="line">&gt; class(x)</div><div class="line">[<span class="number">1</span>] <span class="string">"numeric"</span></div><div class="line">&gt; summary(x)</div><div class="line">   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.</div><div class="line">   <span class="number">0.00</span>    <span class="number">0.00</span>    <span class="number">0.00</span>    <span class="number">0.30</span>    <span class="number">0.75</span>    <span class="number">1.00</span></div></pre></td></tr></table></figure></p>
+<p>在上面的代码中，我们给 x 赋值，它是 numeric 的<br>如果我们想把它当作 factor 来处理，比如 0 代表 false，1 代表 true<br>可以使用 as.factor() 语句<br><figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt; x &lt;- as.factor(x)</div><div class="line">&gt; class(x)</div><div class="line">[<span class="number">1</span>] <span class="string">"factor"</span></div><div class="line">&gt; summary(x)</div><div class="line"><span class="number">0</span> <span class="number">1</span></div><div class="line"><span class="number">7</span> <span class="number">3</span></div></pre></td></tr></table></figure></p>
+<p>dim() &amp; length() 给出了数据的 dimension 和长度<br><figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt; dim(LungCapData)</div><div class="line">[<span class="number">1</span>] <span class="number">725</span>   <span class="number">6</span></div><div class="line">&gt; length(Age)</div><div class="line">[<span class="number">1</span>] <span class="number">725</span></div><div class="line">&gt; length(Gender)</div><div class="line">[<span class="number">1</span>] <span class="number">725</span></div></pre></td></tr></table></figure></p>
+<p>在 R 中，可以使用 double equal sign 来判断等式两边是否相等<br>Age[Gender==”male”] 只用来进行选择的，选择 male，再求 mean<br><figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&gt; mean(Age[Gender==<span class="string">"male"</span>])</div><div class="line">[<span class="number">1</span>] <span class="number">12.20708</span></div><div class="line">&gt; FemData &lt;- LungCapData[Gender==<span class="string">"female"</span>,]</div><div class="line">&gt; MaleData &lt;- LungCapData[Gender==<span class="string">"male"</span>,]</div><div class="line">&gt; dim(FemData)</div><div class="line">[<span class="number">1</span>] <span class="number">358</span>   <span class="number">6</span></div><div class="line">&gt; dim(MaleData)</div><div class="line">[<span class="number">1</span>] <span class="number">367</span>   <span class="number">6</span></div><div class="line">&gt; summary(Gender)</div><div class="line">female   male</div><div class="line">   <span class="number">358</span>    <span class="number">367</span></div></pre></td></tr></table></figure></p>
+<p>在上面的代码中，dim(FemData) 给出 358 个数据，dim(MaleData) 给出 367 个数据<br>这与 summary() 给出的信息是一致的</p>
+<p>使用 &amp; 进行多项条件的选择<br><figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt; MaleOver15 &lt;- LungCapData[Gender==<span class="string">"male"</span> &amp; Age &gt; <span class="number">15</span>,]</div><div class="line">&gt; dim(MaleOver15)</div><div class="line">[<span class="number">1</span>] <span class="number">89</span>  <span class="number">6</span></div></pre></td></tr></table></figure></p>
+<p>使用 cbind() 语句来 combine 某一列数据和原始的表格<br><figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&gt; FemSmoke &lt;- Gender==<span class="string">"female"</span> &amp; Smoke==<span class="string">"yes"</span></div><div class="line">&gt; FemSmoke[<span class="number">1</span>:<span class="number">5</span>]</div><div class="line">[<span class="number">1</span>] <span class="literal">FALSE</span>  <span class="literal">TRUE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span></div><div class="line">&gt; MoreData &lt;- cbind(LungCapData, FemSmoke)</div><div class="line">&gt; MoreData[<span class="number">1</span>:<span class="number">5</span>,]</div><div class="line">  LungCap Age Height Smoke Gender Caesarean FemSmoke</div><div class="line"><span class="number">1</span>   <span class="number">6.475</span>   <span class="number">6</span>   <span class="number">62.1</span>    no   male        no    <span class="literal">FALSE</span></div><div class="line"><span class="number">2</span>  <span class="number">10.125</span>  <span class="number">18</span>   <span class="number">74.7</span>   yes female        no     <span class="literal">TRUE</span></div><div class="line"><span class="number">3</span>   <span class="number">9.550</span>  <span class="number">16</span>   <span class="number">69.7</span>    no female       yes    <span class="literal">FALSE</span></div><div class="line"><span class="number">4</span>  <span class="number">11.125</span>  <span class="number">14</span>   <span class="number">71.0</span>    no   male        no    <span class="literal">FALSE</span></div><div class="line"><span class="number">5</span>   <span class="number">4.800</span>   <span class="number">5</span>   <span class="number">56.9</span>    no   male        no    <span class="literal">FALSE</span></div></pre></td></tr></table></figure></p>
+<p>从上面的代码可以看出，表格的最后一列已经多了 FemSmoke 这个部分</p>
+<p>最后，可以使用 rm() 语句来抹去 memory 中的变量<br>ls() 语句选中了所有的变量<br><figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; rm(list=ls())</div></pre></td></tr></table></figure></p>
+<p>此时，memory 中已经没有任何 variable 了</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>谢谢你请我吃糖果：）</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechatpay.jpeg" alt="Kurt WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpeg" alt="Kurt Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Statistics/" rel="tag"># Statistics</a>
+          
+            <a href="/tags/R/" rel="tag"># R</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/14/2017年8月14号的一些闲言碎语/" rel="next" title="2017年8月14号的一些闲言碎语">
+                <i class="fa fa-chevron-left"></i> 2017年8月14号的一些闲言碎语
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://images-na.ssl-images-amazon.com/images/I/41gXZIpe5ZL.jpg"
+               alt="Kurt" />
+          <p class="site-author-name" itemprop="name">Kurt</p>
+           
+              <p class="site-description motion-element" itemprop="description">Living Like Jim Morrison</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Kurt-Yu" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#R-Basic"><span class="nav-number">1.</span> <span class="nav-text">R Basic</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reading-File"><span class="nav-number">2.</span> <span class="nav-text">Reading File</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+    </div>
+    <embed src="http://www.xiami.com/widget/229085322_1769041116/singlePlayer.swf" type="application/x-shockwave-flash" width="250" height="33" wmode="transparent"></embed>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kurt</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://xiayu112358.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2017/08/21/R-Notes-Set-0/';
+          this.page.identifier = '2017/08/21/R-Notes-Set-0/';
+          this.page.title = 'R Notes | Set 0';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://xiayu112358.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+    
+
+   
+        <!-- UY BEGIN -->
+        <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid="></script>
+        <!-- UY END -->
+    
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("YMFYfVtvVJXV3v6bDw0L5GCs-gzGzoHsz", "cWGHG9utNyNadWCsFhMXK6F6");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <script type="text/javascript" color="0,0,255" opacity="0.7" zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+</body>
+</html>
