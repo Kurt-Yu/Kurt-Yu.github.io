@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Kurt's Blog" />
+  <meta name="keywords" content="Java,OO Design," />
 
 
 
@@ -94,16 +94,17 @@
 
 
 <meta name="description" content="Haven’t write any thing since last year, thinking might be better to write something than just leave this blog as it is. This article is a brief review of UNSW’s COMP2511 course, which is about object">
+<meta name="keywords" content="Java,OO Design">
 <meta property="og:type" content="article">
-<meta property="og:title" content="COMP2511 Review">
+<meta property="og:title" content="COMP2511 Review (Part 1)">
 <meta property="og:url" content="http://yoursite.com/2018/10/28/COMP2511-Review/index.html">
 <meta property="og:site_name" content="Kurt&#39;s Blog">
 <meta property="og:description" content="Haven’t write any thing since last year, thinking might be better to write something than just leave this blog as it is. This article is a brief review of UNSW’s COMP2511 course, which is about object">
 <meta property="og:image" content="http://net-informations.com/java/basics/img/access-modifier.png">
 <meta property="og:image" content="https://itexpertsconsultant.files.wordpress.com/2016/04/uml_symbols.jpg? = 700 * 400">
-<meta property="og:updated_time" content="2018-10-28T06:41:11.120Z">
+<meta property="og:updated_time" content="2018-10-30T04:10:35.668Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="COMP2511 Review">
+<meta name="twitter:title" content="COMP2511 Review (Part 1)">
 <meta name="twitter:description" content="Haven’t write any thing since last year, thinking might be better to write something than just leave this blog as it is. This article is a brief review of UNSW’s COMP2511 course, which is about object">
 <meta name="twitter:image" content="http://net-informations.com/java/basics/img/access-modifier.png">
 
@@ -139,7 +140,7 @@
 
 
 
-  <title>COMP2511 Review | Kurt's Blog</title>
+  <title>COMP2511 Review (Part 1) | Kurt's Blog</title>
   
 
 
@@ -285,7 +286,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">COMP2511 Review</h1>
+          <h1 class="post-title" itemprop="name headline">COMP2511 Review (Part 1)</h1>
         
 
         <div class="post-meta">
@@ -326,7 +327,7 @@
 
           
           
-             <span id="/2018/10/28/COMP2511-Review/" class="leancloud_visitors" data-flag-title="COMP2511 Review">
+             <span id="/2018/10/28/COMP2511-Review/" class="leancloud_visitors" data-flag-title="COMP2511 Review (Part 1)">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -355,39 +356,26 @@
 
       
         <p>Haven’t write any thing since last year, thinking might be better to write something than just leave this blog as it is. This article is a brief review of UNSW’s COMP2511 course, which is about object oriented design. Just to prepare for my final exam.</p>
-<h2 id="Week-1-Java-Basics"><a href="#Week-1-Java-Basics" class="headerlink" title="Week 1 (Java Basics)"></a>Week 1 (Java Basics)</h2><ol>
-<li><p><strong>Object</strong>: Objects have state (attributes) and behaviour (methods – what the object can do).</p>
-</li>
-<li><p><strong>Class</strong>: An object is instantiated from a class and the object is said to be an instance of the class.</p>
-</li>
-</ol>
+<h2 id="Week-1-Java-Basics"><a href="#Week-1-Java-Basics" class="headerlink" title="Week 1 (Java Basics)"></a>Week 1 (Java Basics)</h2><p><strong>1. Object</strong>: Objects have state (attributes) and behaviour (methods – what the object can do).</p>
+<p><strong>2. Class</strong>: An object is instantiated from a class and the object is said to be an instance of the class.</p>
 <ul>
 <li>Two object instances from the same class share the same attributes and methods, but have their own object identities and are independent of each other.</li>
 </ul>
-<ol>
-<li><p><strong>Constructor</strong>: A special method that creates an object instance and assigns values to their attributes.</p>
-</li>
-<li><p><strong>Abstraction</strong>: Helps you to focus on the common properties and behaviours of objects.</p>
-</li>
-<li><p><strong>Encapsulation</strong>: An OO design concept that emphasises hiding the implementation. </p>
-</li>
-</ol>
+<p><strong>3. Constructor</strong>: A special method that creates an object instance and assigns values to their attributes.</p>
+<p><strong>4. Abstraction</strong>: Helps you to focus on the common properties and behaviours of objects.</p>
+<p><strong>5. Encapsulation</strong>: An OO design concept that emphasises hiding the implementation. </p>
 <ul>
 <li>Encapsulation lead to abstraction.</li>
 <li>Encapsulation of object state implies hiding the object’s attributes.</li>
 <li>Method provides explicit access to the object (getter and setter).</li>
 </ul>
-<ol>
-<li><strong>Benefits of Encapsulation</strong>: </li>
-</ol>
+<p><strong>6. Benefits of Encapsulation</strong>: </p>
 <ul>
 <li>Encapsulation ensures that an object’s state is in a consistent state</li>
 <li>Encapsulation increases usability</li>
 <li>Encapsulation abstracts the implementation, reduces the dependencies so that a change to a class does not cause a rippling effect on the system</li>
 </ul>
-<ol>
-<li><strong>Inheritance</strong>: models a relationship between classes in which one class represents a more general concept (parent or base class) and another a more specialised class. <strong>(is-a type)</strong></li>
-</ol>
+<p><strong>7. Inheritance</strong>: models a relationship between classes in which one class represents a more general concept (parent or base class) and another a more specialised class. <strong>(is-a type)</strong></p>
 <ul>
 <li>sub-class can <em>extend</em> parent class by defining additional properties</li>
 <li>sub-class can <em>override</em> methods in the parent class</li>
@@ -396,25 +384,16 @@
 <li>The Java language allows a class to extend only one other class – <em>single inheritance</em>.</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">super</span>.account;       <span class="comment">// invoke field</span></div><div class="line"><span class="keyword">super</span>.getBalance();  <span class="comment">// invoke method</span></div><div class="line"><span class="keyword">super</span>(color);        <span class="comment">// invoke constructor</span></div><div class="line"></div><div class="line"><span class="comment">// parent class has a getArea() method</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Shape</span></span>&#123;</div><div class="line">	...</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">float</span> <span class="title">getArea</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line">	...</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// getArea() method is override in the sub-class</span></div><div class="line"><span class="comment">// method signature must be the same in parent class</span></div><div class="line"><span class="comment">// Override methods cannot be less accessible</span></div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> <span class="keyword">extends</span> <span class="title">Shape</span></span>&#123;</div><div class="line">	...</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">float</span> <span class="title">getArea</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.height * <span class="keyword">this</span>.width;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="Week-2-Inheritance-Polymorphism-Domain-modelling"><a href="#Week-2-Inheritance-Polymorphism-Domain-modelling" class="headerlink" title="Week 2 (Inheritance, Polymorphism, Domain modelling)"></a>Week 2 (Inheritance, Polymorphism, Domain modelling)</h2><ol>
-<li><p><strong>Object types</strong>: All object references have a type.</p>
-</li>
-<li><p><strong>Polymorphism</strong>: means “many forms”, an important OO principle to support software reuse and maintenance.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// these assignments are legal as Rectangle and Circle are both types of Shape</span></div><div class="line">Shape s1 = <span class="keyword">new</span> Rectangle();</div><div class="line">s1 = <span class="keyword">new</span> Circle();</div></pre></td></tr></table></figure>
-</li>
-<li><p><strong>Dynamic Binding</strong>: ensures that when a method is invoked, you get the behaviour associated with the object to which the variable refers to at runtime. (not determined at compile time)</p>
-</li>
-<li><p><strong>instanceof operator</strong>: this method allows us to know what is the actual type of object at run time. <code>if (s instanceof Rectangle) { // do something }</code></p>
-</li>
-<li><p><strong>Access Modifiers</strong>: </p>
-</li>
-</ol>
+<hr>
+<h2 id="Week-2-Inheritance-Polymorphism-Domain-modelling"><a href="#Week-2-Inheritance-Polymorphism-Domain-modelling" class="headerlink" title="Week 2 (Inheritance, Polymorphism, Domain modelling)"></a>Week 2 (Inheritance, Polymorphism, Domain modelling)</h2><p><strong>1. Object types</strong>: All object references have a type.</p>
+<p><strong>2. Polymorphism</strong>: means “many forms”, an important OO principle to support software reuse and maintenance.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// these assignments are legal as Rectangle and Circle are both types of Shape</span></div><div class="line">Shape s1 = <span class="keyword">new</span> Rectangle();</div><div class="line">s1 = <span class="keyword">new</span> Circle();</div></pre></td></tr></table></figure></p>
+<p><strong>3. Dynamic Binding</strong>: ensures that when a method is invoked, you get the behaviour associated with the object to which the variable refers to at runtime. (not determined at compile time)</p>
+<p><strong>4. instanceof operator</strong>: this method allows us to know what is the actual type of object at run time. <code>if (s instanceof Rectangle) { // do something }</code></p>
+<p><strong>5. Access Modifiers</strong>: </p>
 <ul>
 <li><img src="http://net-informations.com/java/basics/img/access-modifier.png" alt="Access Modifiers"></li>
 </ul>
-<ol>
-<li><strong>Association</strong>: Association is a special relationship between two classes, that shows two classes are linked to each other. Or combined into some kind of <em>has-a</em> relationship, where one class “contains” another.</li>
-</ol>
+<p><strong>6. Association</strong>: Association is a special relationship between two classes, that shows two classes are linked to each other. Or combined into some kind of <em>has-a</em> relationship, where one class “contains” another.</p>
 <ul>
 <li><strong>Aggregation</strong>: The contained item is an element of a collection but can also exist on its own. (Lab contains Computers)</li>
 <li><p><strong>Composition</strong>: The contained item is an integral part of the containing item. Cannot exist without another. (Order has Line Items)</p>
@@ -422,38 +401,27 @@
 <li><p><img src="https://itexpertsconsultant.files.wordpress.com/2016/04/uml_symbols.jpg? = 700 * 400" alt="UML"> </p>
 </li>
 </ul>
-<ol>
-<li><p><strong>Requirements Analysis</strong>: determines “external behaviour”. what are the features of the system and who requires these features (actors).</p>
-</li>
-<li><p><strong>Domain Modelling</strong>: determines “internal behaviour”. how elements of system-to-be interact to produce the external behaviour.</p>
-</li>
-</ol>
+<p><strong>7. Requirements Analysis</strong>: determines “external behaviour”. what are the features of the system and who requires these features (actors).</p>
+<p><strong>8. Domain Modelling</strong>: determines “internal behaviour”. how elements of system-to-be interact to produce the external behaviour.</p>
 <ul>
 <li>Also referred to as <strong>conceptual model</strong> or <strong>domain object model</strong></li>
 <li>Provides a visual representation of the problem.</li>
 <li>Techniques to build a domain model: <strong>None/Verb Analysis</strong>, <strong>CRC Cards</strong>.</li>
 </ul>
-<ol>
-<li><strong>CRC Cards</strong>: Class, Responsibility, Collaborator. </li>
-</ol>
-<h2 id="Week-3-Interfaces-Design-Principles-LSP"><a href="#Week-3-Interfaces-Design-Principles-LSP" class="headerlink" title="Week 3 (Interfaces, Design Principles, LSP)"></a>Week 3 (Interfaces, Design Principles, LSP)</h2><ol>
-<li><strong>Abstract Class</strong>: A class which cannot be instantiated, cannot create object instances of an abstract class.</li>
-</ol>
+<p><strong>9. CRC Cards</strong>: Class, Responsibility, Collaborator. </p>
+<hr>
+<h2 id="Week-3-Interfaces-Design-Principles-LSP"><a href="#Week-3-Interfaces-Design-Principles-LSP" class="headerlink" title="Week 3 (Interfaces, Design Principles, LSP)"></a>Week 3 (Interfaces, Design Principles, LSP)</h2><p><strong>1. Abstract Class</strong>: A class which cannot be instantiated, cannot create object instances of an abstract class.</p>
 <ul>
 <li>Serves as a convenient place-holder for factoring out common behaviour in sub-classes</li>
 <li>An abstract class <strong>may</strong> define abstract methods.</li>
 <li>A class with one or more abstract methods must be declared as abstract</li>
 </ul>
-<ol>
-<li><strong>Interface</strong>: defines collection of abstract methods. (defining methods without a body)</li>
-</ol>
+<p><strong>2. Interface</strong>: defines collection of abstract methods. (defining methods without a body)</p>
 <ul>
 <li>Specifies “what” needs to be done, but not “how” to do it</li>
 <li>Classes can implement multiple interfaces, but extend only one</li>
 </ul>
-<ol>
-<li><strong>Design Smell</strong>: is a symptom of poor design, often caused by violation of key design principles.</li>
-</ol>
+<p><strong>3. Design Smell</strong>: is a symptom of poor design, often caused by violation of key design principles.</p>
 <ul>
 <li><strong>Rigidity</strong>: Tendency of the software being too difficult to change even in simple ways.</li>
 <li><strong>Fragility</strong>: Tendency of the software to break in many places when a small change is made.</li>
@@ -463,25 +431,17 @@
 <li><strong>Needless complexity</strong>: Contains constructs that are not currently useful.</li>
 <li><strong>Needless repetition</strong>: Design contains repeated structures that could potentially be unified under a single abstraction.</li>
 </ul>
-<ol>
-<li><strong>Coupling</strong>: Is defined as the degree of interdependence between components or classes.</li>
-</ol>
+<p><strong>4. Coupling</strong>: Is defined as the degree of interdependence between components or classes.</p>
 <ul>
 <li>High coupling occurs when one component A depends on the internal workings of B.</li>
 <li>High coupling leads to complex system, with difficulty in maintenance.</li>
 </ul>
-<ol>
-<li><strong>Cohesion</strong>: The degree to which all elements of a component or class or module work together as a functional unit.</li>
-</ol>
+<p><strong>5. Cohesion</strong>: The degree to which all elements of a component or class or module work together as a functional unit.</p>
 <ul>
 <li>Highly cohesive modules are much easier to maintain and less frequently changed and more reusable.</li>
 </ul>
-<ol>
-<li><p><strong>Good software aims for building a system with loose coupling and high cohesion</strong>.</p>
-</li>
-<li><p><strong>Design principle</strong>: A basic tool or technique that can be applied to designing or writing code to make software more maintainable, flexible and extensible.</p>
-</li>
-</ol>
+<p><strong>6. Good software aims for building a system with loose coupling and high cohesion</strong>.</p>
+<p><strong>7. Design principle</strong>: A basic tool or technique that can be applied to designing or writing code to make software more maintainable, flexible and extensible.</p>
 <ul>
 <li>Design principles help eliminate design smells</li>
 <li>don’t apply principles when there no design smells</li>
@@ -501,6 +461,43 @@
 <p><strong>Rule 4</strong>: Any method M in an object O can call on any methods of any type of object that is a direct component of O</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">O</span></span>&#123;</div><div class="line">	<span class="keyword">public</span> Friend var = <span class="keyword">new</span> Friend();</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">M</span><span class="params">()</span></span>&#123;</div><div class="line">		var.N();</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Friend</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">N</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="comment">// do something</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="Design-principle-2-Liskov-Substitution-Principle-LSP"><a href="#Design-principle-2-Liskov-Substitution-Principle-LSP" class="headerlink" title="Design principle 2 (Liskov Substitution Principle) (LSP)"></a>Design principle 2 (Liskov Substitution Principle) (LSP)</h3><p><strong>LSP is about well-designed inheritance</strong></p>
+<p><strong>Functions that use pointers or references to base classes must be able to use objects of derived classes without knowing it.</strong></p>
+<p>In mathematics, a <code>Square</code> is a <code>Rectangle</code>. Indeed it is a specialization of a rectangle. The “is a” makes you want to model this with inheritance. However if in code you made <code>Square</code> derive from <code>Rectangle</code>, then a <code>Square</code> should be usable anywhere you expect a <code>Rectangle</code>. This makes for some strange behavior.</p>
+<p>Imagine you had <code>SetWidth</code> and <code>SetHeight</code> methods on your <code>Rectangle</code> base class; this seems perfectly logical. However if your <code>Rectangle</code> reference pointed to a <code>Square</code>, then <code>SetWidth</code> and <code>SetHeight</code> doesn’t make sense because setting one would change the other to match it. In this case <code>Square</code> fails the Liskov Substitution Test with <code>Rectangle</code> and the abstraction of having <code>Square</code> inherit from <code>Rectangle</code> is a bad one.</p>
+<p><a href="https://stackoverflow.com/questions/56860/what-is-an-example-of-the-liskov-substitution-principle" target="_blank" rel="external">Reference</a></p>
+<p><strong>8. Refactoring</strong>: the process of restructuring software to make it easier to understand and cheaper to modify withour changing it’s external, observable behaviour.</p>
+<ul>
+<li>refactoring improves design of software</li>
+<li>refactoring makes software easier to understand</li>
+<li>refactoring helps you find bugs</li>
+<li>refactoring helps you program faster</li>
+<li>refactoring helps you to conform to design principle and avoid design smells</li>
+<li>refactor when you add a function</li>
+<li>refactor when you need to fix a bug</li>
+<li>refactor as you do a code review</li>
+</ul>
+<p><strong>9. Common Bad Code Smells</strong>:</p>
+<ul>
+<li>Duplicated Code</li>
+<li>Long Method</li>
+<li>Large Class</li>
+<li>Long Paramenter List</li>
+<li>Divergent Change: when one class is commonly changed in different ways for different reasons</li>
+<li>Shotgun Suergery: the opposite of divergent change, when you have to make a lot of little changes to a lot of different classes</li>
+</ul>
+<p><strong>10. delegation</strong>: The act of one object forwarding an operation to another object to be performed on behalf of the first object</p>
+<h3 id="Refactoring-Techniques-1-Extract-Method"><a href="#Refactoring-Techniques-1-Extract-Method" class="headerlink" title="Refactoring Techniques 1: Extract Method"></a>Refactoring Techniques 1: Extract Method</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Before extract method:</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> a = <span class="number">1</span>;</div><div class="line">	<span class="keyword">int</span> b = <span class="number">2</span>;</div><div class="line">	<span class="keyword">int</span> c = a + b;</div><div class="line">	<span class="keyword">int</span> d = a + c;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// after extract method:</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> a = <span class="number">1</span>;</div><div class="line">	<span class="keyword">int</span> b = <span class="number">2</span>;</div><div class="line">	<span class="keyword">int</span> c = add(a, b);</div><div class="line">	<span class="keyword">int</span> d = add(a, c);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>&#123;</div><div class="line">	<span class="keyword">return</span> a + b;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Refactoring-Techniques-2-Rename-Variables"><a href="#Refactoring-Techniques-2-Rename-Variables" class="headerlink" title="Refactoring Techniques 2: Rename Variables"></a>Refactoring Techniques 2: Rename Variables</h3><p>Good code should communicate what it is doing clearly, and variable names are a key to clear code. Never be afraid to change the names of things to improve clarity.</p>
+<h3 id="Refactoring-Techniques-3-Move-Method"><a href="#Refactoring-Techniques-3-Move-Method" class="headerlink" title="Refactoring Techniques 3: Move Method"></a>Refactoring Techniques 3: Move Method</h3><p>Generally, a method be on the object whose data uses it.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Project</span> </span>&#123;</div><div class="line">	Person[] participants;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</div><div class="line">	<span class="keyword">int</span> id;</div><div class="line">  	<span class="function"><span class="keyword">boolean</span> <span class="title">participate</span><span class="params">(Project p)</span> </span>&#123;</div><div class="line">    	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;p.participants.length; i++) &#123;</div><div class="line">	  		<span class="keyword">if</span> (p.participants[i].id == id) <span class="keyword">return</span>(<span class="keyword">true</span>);</div><div class="line">    	&#125;</div><div class="line">    <span class="keyword">return</span>(<span class="keyword">false</span>);</div><div class="line">  	&#125;   </div><div class="line">&#125;</div><div class="line"></div><div class="line">... <span class="keyword">if</span> (x.participate(p)) ...</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// After applying the move you end up with</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Project</span> </span>&#123;</div><div class="line">  	Person[] participants;</div><div class="line">  	<span class="function"><span class="keyword">boolean</span> <span class="title">participate</span><span class="params">(Person x)</span> </span>&#123;</div><div class="line">    	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;participants.length; i++) &#123;</div><div class="line">	  		<span class="keyword">if</span> (participants[i].id == x.id) <span class="keyword">return</span>(<span class="keyword">true</span>);</div><div class="line">    	&#125;</div><div class="line">    <span class="keyword">return</span>(<span class="keyword">false</span>);</div><div class="line">  	&#125;   </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</div><div class="line">  	<span class="keyword">int</span> id;</div><div class="line">&#125;</div><div class="line"></div><div class="line">... <span class="keyword">if</span> (p.participate(x)) ...</div></pre></td></tr></table></figure>
+<h3 id="Refactoring-Techniques-4-Replace-Temp-with-Query"><a href="#Refactoring-Techniques-4-Replace-Temp-with-Query" class="headerlink" title="Refactoring Techniques 4: Replace Temp with Query"></a>Refactoring Techniques 4: Replace Temp with Query</h3><p>A technique to remove unnecessary local and temporary variables.</p>
+<h3 id="Refactoring-Techniques-5-Replace-conditional-logic-with-polymorphism"><a href="#Refactoring-Techniques-5-Replace-conditional-logic-with-polymorphism" class="headerlink" title="Refactoring Techniques 5: Replace conditional logic with polymorphism"></a>Refactoring Techniques 5: Replace conditional logic with polymorphism</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bird</span> </span>&#123;</div><div class="line">	<span class="comment">//...</span></div><div class="line">  	<span class="function"><span class="keyword">double</span> <span class="title">getSpeed</span><span class="params">()</span> </span>&#123;</div><div class="line">    	<span class="keyword">switch</span> (type) &#123;</div><div class="line">      	<span class="keyword">case</span> EUROPEAN:</div><div class="line">        	<span class="keyword">return</span> getBaseSpeed();</div><div class="line">      	<span class="keyword">case</span> AFRICAN:</div><div class="line">        	<span class="keyword">return</span> getBaseSpeed() - getLoadFactor() * numberOfCoconuts;</div><div class="line">      	<span class="keyword">case</span> NORWEGIAN_BLUE:</div><div class="line">        	<span class="keyword">return</span> (isNailed) ? <span class="number">0</span> : getBaseSpeed(voltage);</div><div class="line">    	&#125;</div><div class="line">    </div><div class="line">    	<span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"Should be unreachable"</span>);</div><div class="line">  	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// After applying refactoring technique 5:</span></div><div class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Bird</span> </span>&#123;</div><div class="line">  	<span class="comment">//...</span></div><div class="line">  	<span class="function"><span class="keyword">abstract</span> <span class="keyword">double</span> <span class="title">getSpeed</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">European</span> <span class="keyword">extends</span> <span class="title">Bird</span> </span>&#123;</div><div class="line">  	<span class="function"><span class="keyword">double</span> <span class="title">getSpeed</span><span class="params">()</span> </span>&#123;</div><div class="line">    	<span class="keyword">return</span> getBaseSpeed();</div><div class="line">  	&#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">African</span> <span class="keyword">extends</span> <span class="title">Bird</span> </span>&#123;</div><div class="line">  	<span class="function"><span class="keyword">double</span> <span class="title">getSpeed</span><span class="params">()</span> </span>&#123;</div><div class="line">    	<span class="keyword">return</span> getBaseSpeed() - getLoadFactor() * numberOfCoconuts;</div><div class="line">  	&#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">NorwegianBlue</span> <span class="keyword">extends</span> <span class="title">Bird</span> </span>&#123;</div><div class="line">  	<span class="function"><span class="keyword">double</span> <span class="title">getSpeed</span><span class="params">()</span> </span>&#123;</div><div class="line">    	<span class="keyword">return</span> (isNailed) ? <span class="number">0</span> : getBaseSpeed(voltage);</div><div class="line">  	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Somewhere in client code</span></div><div class="line">speed = bird.getSpeed();</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="equals-method"><a href="#equals-method" class="headerlink" title="equals() method"></a>equals() method</h2><h3 id="Difference-between-a-b-and-a-equals-b"><a href="#Difference-between-a-b-and-a-equals-b" class="headerlink" title="Difference between a == b and a.equals(b)"></a>Difference between <code>a == b</code> and <code>a.equals(b)</code></h3><p><code>a == b</code> checks memory references only<br><code>a.equals(b)</code> calls the <code>eqauls()</code> method that associated with object a</p>
+<p>Bad <code>equals()</code>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Point</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> x, <span class="keyword">int</span> y;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Point</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">		<span class="keyword">this</span>.x = x;</div><div class="line">		<span class="keyword">this</span>.y = y;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Point obj)</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.x == obj.x &amp;&amp; <span class="keyword">this</span>.y == obj.y;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">		Point p1 = <span class="keyword">new</span> Point(<span class="number">1</span>, <span class="number">2</span>);</div><div class="line">		Point p2 = <span class="keyword">new</span> Point(<span class="number">1</span>, <span class="number">2</span>);</div><div class="line"></div><div class="line">		System.out.println(p1.equals(p2)); <span class="comment">// true</span></div><div class="line"></div><div class="line">		Object p3 = p2;</div><div class="line">		System.out.println(p3.equals(p1)); <span class="comment">// false</span></div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>Write a good equals() method</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span></span>&#123;</div><div class="line">	<span class="comment">// Step 1: compare object references similar to Object's equals()</span></div><div class="line">	<span class="keyword">if</span> (<span class="keyword">this</span> == obj) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">	<span class="comment">// Step 2: Check if paramter is null</span></div><div class="line">	<span class="keyword">if</span> (obj == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">	<span class="comment">// Step 3: compare each field</span></div><div class="line">	<span class="keyword">if</span> (getClass() != obj.getClass()) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">	Point other = (Point) obj;</div><div class="line">	<span class="keyword">if</span> (x != other.x) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">	<span class="keyword">if</span> (y != other.y) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">	<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -548,6 +545,14 @@
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/OO-Design/" rel="tag"># OO Design</a>
+          
+        </div>
       
 
       
@@ -658,7 +663,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -704,7 +709,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Week-1-Java-Basics"><span class="nav-number">1.</span> <span class="nav-text">Week 1 (Java Basics)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Week-2-Inheritance-Polymorphism-Domain-modelling"><span class="nav-number">2.</span> <span class="nav-text">Week 2 (Inheritance, Polymorphism, Domain modelling)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Week-3-Interfaces-Design-Principles-LSP"><span class="nav-number">3.</span> <span class="nav-text">Week 3 (Interfaces, Design Principles, LSP)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Design-principle-1-Least-Knowledge-or-Law-of-Demeter"><span class="nav-number">3.1.</span> <span class="nav-text">Design principle 1 (Least Knowledge or Law of Demeter)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Design-principle-2-Liskov-Substitution-Principle-LSP"><span class="nav-number">3.2.</span> <span class="nav-text">Design principle 2 (Liskov Substitution Principle) (LSP)</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Week-1-Java-Basics"><span class="nav-number">1.</span> <span class="nav-text">Week 1 (Java Basics)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Week-2-Inheritance-Polymorphism-Domain-modelling"><span class="nav-number">2.</span> <span class="nav-text">Week 2 (Inheritance, Polymorphism, Domain modelling)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Week-3-Interfaces-Design-Principles-LSP"><span class="nav-number">3.</span> <span class="nav-text">Week 3 (Interfaces, Design Principles, LSP)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Design-principle-1-Least-Knowledge-or-Law-of-Demeter"><span class="nav-number">3.1.</span> <span class="nav-text">Design principle 1 (Least Knowledge or Law of Demeter)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Design-principle-2-Liskov-Substitution-Principle-LSP"><span class="nav-number">3.2.</span> <span class="nav-text">Design principle 2 (Liskov Substitution Principle) (LSP)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Refactoring-Techniques-1-Extract-Method"><span class="nav-number">3.3.</span> <span class="nav-text">Refactoring Techniques 1: Extract Method</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Refactoring-Techniques-2-Rename-Variables"><span class="nav-number">3.4.</span> <span class="nav-text">Refactoring Techniques 2: Rename Variables</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Refactoring-Techniques-3-Move-Method"><span class="nav-number">3.5.</span> <span class="nav-text">Refactoring Techniques 3: Move Method</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Refactoring-Techniques-4-Replace-Temp-with-Query"><span class="nav-number">3.6.</span> <span class="nav-text">Refactoring Techniques 4: Replace Temp with Query</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Refactoring-Techniques-5-Replace-conditional-logic-with-polymorphism"><span class="nav-number">3.7.</span> <span class="nav-text">Refactoring Techniques 5: Replace conditional logic with polymorphism</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#equals-method"><span class="nav-number">4.</span> <span class="nav-text">equals() method</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Difference-between-a-b-and-a-equals-b"><span class="nav-number">4.1.</span> <span class="nav-text">Difference between a == b and a.equals(b)</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -856,7 +861,7 @@
         var disqus_config = function () {
           this.page.url = 'http://yoursite.com/2018/10/28/COMP2511-Review/';
           this.page.identifier = '2018/10/28/COMP2511-Review/';
-          this.page.title = 'COMP2511 Review';
+          this.page.title = 'COMP2511 Review (Part 1)';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://xiayu112358.disqus.com/embed.js';
