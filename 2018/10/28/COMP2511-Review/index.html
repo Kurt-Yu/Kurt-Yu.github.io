@@ -1,0 +1,1026 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Kurt's Blog" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="Haven’t write any thing since last year, thinking might be better to write something than just leave this blog as it is. This article is a brief review of UNSW’s COMP2511 course, which is about object">
+<meta property="og:type" content="article">
+<meta property="og:title" content="COMP2511 Review">
+<meta property="og:url" content="http://yoursite.com/2018/10/28/COMP2511-Review/index.html">
+<meta property="og:site_name" content="Kurt&#39;s Blog">
+<meta property="og:description" content="Haven’t write any thing since last year, thinking might be better to write something than just leave this blog as it is. This article is a brief review of UNSW’s COMP2511 course, which is about object">
+<meta property="og:image" content="http://net-informations.com/java/basics/img/access-modifier.png">
+<meta property="og:image" content="https://itexpertsconsultant.files.wordpress.com/2016/04/uml_symbols.jpg? = 700 * 400">
+<meta property="og:updated_time" content="2018-10-28T06:41:11.120Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="COMP2511 Review">
+<meta name="twitter:description" content="Haven’t write any thing since last year, thinking might be better to write something than just leave this blog as it is. This article is a brief review of UNSW’s COMP2511 course, which is about object">
+<meta name="twitter:image" content="http://net-informations.com/java/basics/img/access-modifier.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/10/28/COMP2511-Review/"/>
+
+
+
+
+
+  <title>COMP2511 Review | Kurt's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Kurt's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">We can be heroes, just for one day</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/28/COMP2511-Review/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kurt">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://images-na.ssl-images-amazon.com/images/I/41gXZIpe5ZL.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kurt's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">COMP2511 Review</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-28T15:30:38+11:00">
+                2018-10-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/10/28/COMP2511-Review/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/10/28/COMP2511-Review/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/10/28/COMP2511-Review/" class="leancloud_visitors" data-flag-title="COMP2511 Review">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Haven’t write any thing since last year, thinking might be better to write something than just leave this blog as it is. This article is a brief review of UNSW’s COMP2511 course, which is about object oriented design. Just to prepare for my final exam.</p>
+<h2 id="Week-1-Java-Basics"><a href="#Week-1-Java-Basics" class="headerlink" title="Week 1 (Java Basics)"></a>Week 1 (Java Basics)</h2><ol>
+<li><p><strong>Object</strong>: Objects have state (attributes) and behaviour (methods – what the object can do).</p>
+</li>
+<li><p><strong>Class</strong>: An object is instantiated from a class and the object is said to be an instance of the class.</p>
+</li>
+</ol>
+<ul>
+<li>Two object instances from the same class share the same attributes and methods, but have their own object identities and are independent of each other.</li>
+</ul>
+<ol>
+<li><p><strong>Constructor</strong>: A special method that creates an object instance and assigns values to their attributes.</p>
+</li>
+<li><p><strong>Abstraction</strong>: Helps you to focus on the common properties and behaviours of objects.</p>
+</li>
+<li><p><strong>Encapsulation</strong>: An OO design concept that emphasises hiding the implementation. </p>
+</li>
+</ol>
+<ul>
+<li>Encapsulation lead to abstraction.</li>
+<li>Encapsulation of object state implies hiding the object’s attributes.</li>
+<li>Method provides explicit access to the object (getter and setter).</li>
+</ul>
+<ol>
+<li><strong>Benefits of Encapsulation</strong>: </li>
+</ol>
+<ul>
+<li>Encapsulation ensures that an object’s state is in a consistent state</li>
+<li>Encapsulation increases usability</li>
+<li>Encapsulation abstracts the implementation, reduces the dependencies so that a change to a class does not cause a rippling effect on the system</li>
+</ul>
+<ol>
+<li><strong>Inheritance</strong>: models a relationship between classes in which one class represents a more general concept (parent or base class) and another a more specialised class. <strong>(is-a type)</strong></li>
+</ol>
+<ul>
+<li>sub-class can <em>extend</em> parent class by defining additional properties</li>
+<li>sub-class can <em>override</em> methods in the parent class</li>
+<li>use “super” in subclass, to invoke a parent’s method.</li>
+<li>Constructors are not inherited. To create an instance of a subclass, there are two ways:  1. Use the default <code>no-arg</code> constructor. (This default constructor will make a default call to super() ). 2. Define a constructor in subclass.</li>
+<li>The Java language allows a class to extend only one other class – <em>single inheritance</em>.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">super</span>.account;       <span class="comment">// invoke field</span></div><div class="line"><span class="keyword">super</span>.getBalance();  <span class="comment">// invoke method</span></div><div class="line"><span class="keyword">super</span>(color);        <span class="comment">// invoke constructor</span></div><div class="line"></div><div class="line"><span class="comment">// parent class has a getArea() method</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Shape</span></span>&#123;</div><div class="line">	...</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">float</span> <span class="title">getArea</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line">	...</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// getArea() method is override in the sub-class</span></div><div class="line"><span class="comment">// method signature must be the same in parent class</span></div><div class="line"><span class="comment">// Override methods cannot be less accessible</span></div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> <span class="keyword">extends</span> <span class="title">Shape</span></span>&#123;</div><div class="line">	...</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">float</span> <span class="title">getArea</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.height * <span class="keyword">this</span>.width;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Week-2-Inheritance-Polymorphism-Domain-modelling"><a href="#Week-2-Inheritance-Polymorphism-Domain-modelling" class="headerlink" title="Week 2 (Inheritance, Polymorphism, Domain modelling)"></a>Week 2 (Inheritance, Polymorphism, Domain modelling)</h2><ol>
+<li><p><strong>Object types</strong>: All object references have a type.</p>
+</li>
+<li><p><strong>Polymorphism</strong>: means “many forms”, an important OO principle to support software reuse and maintenance.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// these assignments are legal as Rectangle and Circle are both types of Shape</span></div><div class="line">Shape s1 = <span class="keyword">new</span> Rectangle();</div><div class="line">s1 = <span class="keyword">new</span> Circle();</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Dynamic Binding</strong>: ensures that when a method is invoked, you get the behaviour associated with the object to which the variable refers to at runtime. (not determined at compile time)</p>
+</li>
+<li><p><strong>instanceof operator</strong>: this method allows us to know what is the actual type of object at run time. <code>if (s instanceof Rectangle) { // do something }</code></p>
+</li>
+<li><p><strong>Access Modifiers</strong>: </p>
+</li>
+</ol>
+<ul>
+<li><img src="http://net-informations.com/java/basics/img/access-modifier.png" alt="Access Modifiers"></li>
+</ul>
+<ol>
+<li><strong>Association</strong>: Association is a special relationship between two classes, that shows two classes are linked to each other. Or combined into some kind of <em>has-a</em> relationship, where one class “contains” another.</li>
+</ol>
+<ul>
+<li><strong>Aggregation</strong>: The contained item is an element of a collection but can also exist on its own. (Lab contains Computers)</li>
+<li><p><strong>Composition</strong>: The contained item is an integral part of the containing item. Cannot exist without another. (Order has Line Items)</p>
+</li>
+<li><p><img src="https://itexpertsconsultant.files.wordpress.com/2016/04/uml_symbols.jpg? = 700 * 400" alt="UML"> </p>
+</li>
+</ul>
+<ol>
+<li><p><strong>Requirements Analysis</strong>: determines “external behaviour”. what are the features of the system and who requires these features (actors).</p>
+</li>
+<li><p><strong>Domain Modelling</strong>: determines “internal behaviour”. how elements of system-to-be interact to produce the external behaviour.</p>
+</li>
+</ol>
+<ul>
+<li>Also referred to as <strong>conceptual model</strong> or <strong>domain object model</strong></li>
+<li>Provides a visual representation of the problem.</li>
+<li>Techniques to build a domain model: <strong>None/Verb Analysis</strong>, <strong>CRC Cards</strong>.</li>
+</ul>
+<ol>
+<li><strong>CRC Cards</strong>: Class, Responsibility, Collaborator. </li>
+</ol>
+<h2 id="Week-3-Interfaces-Design-Principles-LSP"><a href="#Week-3-Interfaces-Design-Principles-LSP" class="headerlink" title="Week 3 (Interfaces, Design Principles, LSP)"></a>Week 3 (Interfaces, Design Principles, LSP)</h2><ol>
+<li><strong>Abstract Class</strong>: A class which cannot be instantiated, cannot create object instances of an abstract class.</li>
+</ol>
+<ul>
+<li>Serves as a convenient place-holder for factoring out common behaviour in sub-classes</li>
+<li>An abstract class <strong>may</strong> define abstract methods.</li>
+<li>A class with one or more abstract methods must be declared as abstract</li>
+</ul>
+<ol>
+<li><strong>Interface</strong>: defines collection of abstract methods. (defining methods without a body)</li>
+</ol>
+<ul>
+<li>Specifies “what” needs to be done, but not “how” to do it</li>
+<li>Classes can implement multiple interfaces, but extend only one</li>
+</ul>
+<ol>
+<li><strong>Design Smell</strong>: is a symptom of poor design, often caused by violation of key design principles.</li>
+</ol>
+<ul>
+<li><strong>Rigidity</strong>: Tendency of the software being too difficult to change even in simple ways.</li>
+<li><strong>Fragility</strong>: Tendency of the software to break in many places when a small change is made.</li>
+<li><strong>Immobility</strong>: Design is hard to reuse.</li>
+<li><strong>Viscosity</strong>: changes are easy to implement through “hacks” over “design preserving methods”.</li>
+<li><strong>Opacity</strong>: Tendency of a module to be difficult to understand.</li>
+<li><strong>Needless complexity</strong>: Contains constructs that are not currently useful.</li>
+<li><strong>Needless repetition</strong>: Design contains repeated structures that could potentially be unified under a single abstraction.</li>
+</ul>
+<ol>
+<li><strong>Coupling</strong>: Is defined as the degree of interdependence between components or classes.</li>
+</ol>
+<ul>
+<li>High coupling occurs when one component A depends on the internal workings of B.</li>
+<li>High coupling leads to complex system, with difficulty in maintenance.</li>
+</ul>
+<ol>
+<li><strong>Cohesion</strong>: The degree to which all elements of a component or class or module work together as a functional unit.</li>
+</ol>
+<ul>
+<li>Highly cohesive modules are much easier to maintain and less frequently changed and more reusable.</li>
+</ul>
+<ol>
+<li><p><strong>Good software aims for building a system with loose coupling and high cohesion</strong>.</p>
+</li>
+<li><p><strong>Design principle</strong>: A basic tool or technique that can be applied to designing or writing code to make software more maintainable, flexible and extensible.</p>
+</li>
+</ol>
+<ul>
+<li>Design principles help eliminate design smells</li>
+<li>don’t apply principles when there no design smells</li>
+</ul>
+<h3 id="Design-principle-1-Least-Knowledge-or-Law-of-Demeter"><a href="#Design-principle-1-Least-Knowledge-or-Law-of-Demeter" class="headerlink" title="Design principle 1 (Least Knowledge or Law of Demeter)"></a>Design principle 1 (Least Knowledge or Law of Demeter)</h3><p><strong>Talk only to your friends!</strong></p>
+<ul>
+<li>classes should know about and interact with as few classes as possible</li>
+<li>reduce the interaction between objects to just a few close “friends”</li>
+<li>helps us to design “loosely coupled” system</li>
+</ul>
+<p><strong>Rule 1</strong>: A method M in an object O call on any other method within O itself</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">M</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">methodM</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">this</span>.methodN();</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">methodN</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="comment">// do something</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>Rule 2</strong>: A method M in an object O can call on any methods of parameters passed to the method M</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">O</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">M</span><span class="params">(Friend f)</span></span>&#123;</div><div class="line">		f.N();</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Friend</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">N</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="comment">// do something</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>Rule 3</strong>: A method M can call a method N of another object, if that object is instantiated within the method M</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">O</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">M</span><span class="params">()</span></span>&#123;</div><div class="line">		Friend f = <span class="keyword">new</span> Friend();</div><div class="line">		f.N();</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Friend</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">N</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="comment">// do something</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>Rule 4</strong>: Any method M in an object O can call on any methods of any type of object that is a direct component of O</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">O</span></span>&#123;</div><div class="line">	<span class="keyword">public</span> Friend var = <span class="keyword">new</span> Friend();</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">M</span><span class="params">()</span></span>&#123;</div><div class="line">		var.N();</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Friend</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">N</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="comment">// do something</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Design-principle-2-Liskov-Substitution-Principle-LSP"><a href="#Design-principle-2-Liskov-Substitution-Principle-LSP" class="headerlink" title="Design principle 2 (Liskov Substitution Principle) (LSP)"></a>Design principle 2 (Liskov Substitution Principle) (LSP)</h3><p><strong>LSP is about well-designed inheritance</strong></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>谢谢你请我吃糖果：）</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechatpay.jpeg" alt="Kurt WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpeg" alt="Kurt Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/21/R-Notes-Set-0/" rel="next" title="R Notes | Set 0">
+                <i class="fa fa-chevron-left"></i> R Notes | Set 0
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://images-na.ssl-images-amazon.com/images/I/41gXZIpe5ZL.jpg"
+               alt="Kurt" />
+          <p class="site-author-name" itemprop="name">Kurt</p>
+           
+              <p class="site-description motion-element" itemprop="description">Living Like Jim Morrison</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Kurt-Yu" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Week-1-Java-Basics"><span class="nav-number">1.</span> <span class="nav-text">Week 1 (Java Basics)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Week-2-Inheritance-Polymorphism-Domain-modelling"><span class="nav-number">2.</span> <span class="nav-text">Week 2 (Inheritance, Polymorphism, Domain modelling)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Week-3-Interfaces-Design-Principles-LSP"><span class="nav-number">3.</span> <span class="nav-text">Week 3 (Interfaces, Design Principles, LSP)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Design-principle-1-Least-Knowledge-or-Law-of-Demeter"><span class="nav-number">3.1.</span> <span class="nav-text">Design principle 1 (Least Knowledge or Law of Demeter)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Design-principle-2-Liskov-Substitution-Principle-LSP"><span class="nav-number">3.2.</span> <span class="nav-text">Design principle 2 (Liskov Substitution Principle) (LSP)</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+    </div>
+    <embed src="http://www.xiami.com/widget/229085322_1769041116/singlePlayer.swf" type="application/x-shockwave-flash" width="250" height="33" wmode="transparent"></embed>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kurt</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://xiayu112358.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2018/10/28/COMP2511-Review/';
+          this.page.identifier = '2018/10/28/COMP2511-Review/';
+          this.page.title = 'COMP2511 Review';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://xiayu112358.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+    
+
+   
+        <!-- UY BEGIN -->
+        <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid="></script>
+        <!-- UY END -->
+    
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("YMFYfVtvVJXV3v6bDw0L5GCs-gzGzoHsz", "cWGHG9utNyNadWCsFhMXK6F6");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <script type="text/javascript" color="0,0,255" opacity="0.7" zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+</body>
+</html>
