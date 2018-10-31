@@ -1,0 +1,1048 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="SAS,MATH2871," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="This is a review of MATH2871, just to prepare for my final exam. Chapter 2: Getting Started Data step are typically used to create SAS data sets. Proc step typically used to process SAS data sets. SAS">
+<meta name="keywords" content="SAS,MATH2871">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MATH2871 Review (Part 1)">
+<meta property="og:url" content="http://yoursite.com/2018/10/30/MATH2871-Review-Part-1/index.html">
+<meta property="og:site_name" content="Kurt&#39;s Blog">
+<meta property="og:description" content="This is a review of MATH2871, just to prepare for my final exam. Chapter 2: Getting Started Data step are typically used to create SAS data sets. Proc step typically used to process SAS data sets. SAS">
+<meta property="og:image" content="https://slideplayer.com/slide/9274223/28/images/58/SAS+Formats+Selected+SAS+formats%3A+Format+Definition+%24w..jpg">
+<meta property="og:image" content="https://slideplayer.com/slide/9274223/28/images/62/SAS+Date+Formats+Format+Stored+Value+Displayed+Value+DATE+DEC59.jpg">
+<meta property="og:updated_time" content="2018-10-30T10:17:21.333Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MATH2871 Review (Part 1)">
+<meta name="twitter:description" content="This is a review of MATH2871, just to prepare for my final exam. Chapter 2: Getting Started Data step are typically used to create SAS data sets. Proc step typically used to process SAS data sets. SAS">
+<meta name="twitter:image" content="https://slideplayer.com/slide/9274223/28/images/58/SAS+Formats+Selected+SAS+formats%3A+Format+Definition+%24w..jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/10/30/MATH2871-Review-Part-1/"/>
+
+
+
+
+
+  <title>MATH2871 Review (Part 1) | Kurt's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Kurt's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">We can be heroes, just for one day</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/30/MATH2871-Review-Part-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kurt">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://images-na.ssl-images-amazon.com/images/I/41gXZIpe5ZL.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kurt's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MATH2871 Review (Part 1)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-30T15:22:03+11:00">
+                2018-10-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/10/30/MATH2871-Review-Part-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/10/30/MATH2871-Review-Part-1/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/10/30/MATH2871-Review-Part-1/" class="leancloud_visitors" data-flag-title="MATH2871 Review (Part 1)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>This is a review of MATH2871, just to prepare for my final exam.</p>
+<h2 id="Chapter-2-Getting-Started"><a href="#Chapter-2-Getting-Started" class="headerlink" title="Chapter 2: Getting Started"></a>Chapter 2: Getting Started</h2><ol>
+<li><code>Data</code> step are typically used to create SAS data sets.</li>
+<li><code>Proc</code> step typically used to process SAS data sets.</li>
+<li>SAS steps begins with either <code>Data</code> or <code>Proc</code>. SAS detects the end of a step by: a <code>run</code> statement, a <code>quit</code> statement, the beginning of another step.</li>
+<li>Three primary windows: <code>Editor</code> contains the SAS program to submit. <code>Log</code> contains information about the processing of the SAS program, including any warning and error messages. <code>Ouput</code> contains reports generated by the SAS program.</li>
+</ol>
+<hr>
+<h2 id="Chapter-3-Working-with-SAS-Syntax"><a href="#Chapter-3-Working-with-SAS-Syntax" class="headerlink" title="Chapter 3: Working with SAS Syntax"></a>Chapter 3: Working with SAS Syntax</h2><ol>
+<li>SAS statements usually begin with an identifying keyword, always ends with a semicolon.<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">data work.NewSalesEmps;</div><div class="line">	length First_Name $ 12</div><div class="line">			Last_Name $ 18 Job_Title $ 25;</div><div class="line">	infile `newemps.csv` dlm=`,`;</div><div class="line">	input First_Name $ Last_Name $ Job_Title $ Salary;</div><div class="line">run;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>There are <strong>five</strong> statement in this data step, because 5 semicolons.</p>
+<ol>
+<li>SAS comments: <code>/* comment */</code> and <code>* comment ;</code></li>
+<li>Syntax errors: misspelled keywords, unmatched quotation marks, missing semicolons, invalid options.</li>
+</ol>
+<hr>
+<h2 id="Chapter-4-Getting-Familiar-with-SAS-Data-Sets"><a href="#Chapter-4-Getting-Familiar-with-SAS-Data-Sets" class="headerlink" title="Chapter 4: Getting Familiar with SAS Data Sets"></a>Chapter 4: Getting Familiar with SAS Data Sets</h2><ol>
+<li>Components of SAS Data Sets: <code>Descriptor Potion</code> and <code>Data Potion</code>. </li>
+<li><p>Descriptor potion contains general information about the SAS data set and variable names. Browsing the descriptor potion:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">proc contents data=work.NewSalesEmps;</div><div class="line">run;</div></pre></td></tr></table></figure>
+</li>
+<li><p>The data potion of a SAS data set is a rectangular table of character and/or numeric data values. Their are two types of variables:</p>
+</li>
+</ol>
+<ul>
+<li>character: contain any value: letters, numbers, blanks … </li>
+<li>numeric: stored as floating point numbers, in 8 bytes by default</li>
+<li>SAS uses <strong>numeric</strong> data type to store <strong>data values</strong></li>
+</ul>
+<ol>
+<li>A SAS data value is stored as the number of days between January 1, 1960, and a specific date.</li>
+</ol>
+<ul>
+<li>01JAN1959 –&gt; -365</li>
+<li>01JAN1960 –&gt; 0</li>
+<li>01JAN1961 –&gt; 366</li>
+</ul>
+<ol>
+<li>Missing value: A character missing value is displayed as a blank. A numeric missing value is displayed as a period (.)</li>
+<li>Variable names: </li>
+</ol>
+<ul>
+<li>can be 32 characters long</li>
+<li>must start with a letter or a underscore, subsequent can also be numerals</li>
+<li>can be uppercase. lower case or mixed case, </li>
+<li>are not case sensitive</li>
+</ul>
+<ol>
+<li><p><code>proc print</code> display the data portion of a SAS data set</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">proc print data=work.NewSalesEmps;</div><div class="line">run;</div></pre></td></tr></table></figure>
+</li>
+<li><p>Options and statements can be added to the print procedure. The <code>noobs</code> option suppresses the observation numbers on the left side of the report. The <code>var</code> statement selects variables that appear in the report and determines their order.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc print data=work.NewSalesemps noobs;</div><div class="line">	var Last_Name First_Name Salary;</div><div class="line">run;</div></pre></td></tr></table></figure>
+</li>
+<li><p>When a SAS session starts, SAS automatically create one temporary and at least one permanent SAS data library that you can access. <code>work</code>: <strong>temporary</strong> library. <code>sasuser</code>:permanent library.</p>
+</li>
+<li>Create your own <strong>permanent</strong> libraries: <code>libref</code> must be 8 characters or less. must start with a letter or underscore. the remaining characters must be letters, numbers or underscores.<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">libname libref `SAS-data-library` &lt;options&gt;;</div><div class="line">``` </div><div class="line">11. The `libname` (Temporal link to the directory) statement remains in effect until canceled, changed or your SAS session ends.</div><div class="line">+ general form of cleaning `libref`: `libname libref clear;`</div><div class="line">12. The default `libref` is `work` if the `libref` is omitted.</div><div class="line">13. The `contents` procedure with the `_all_` keyword produces a list of all the SAS files in the data library. The `nods` option suppresses the descriptor portions of the data set. The `nods` is only used in conjunction with the keyword `_all_`</div><div class="line">```sas</div><div class="line">proc contents data=libref._all_ nods;</div><div class="line">run;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<h2 id="Chapter-5-Reading-SAS-Data-Sets"><a href="#Chapter-5-Reading-SAS-Data-Sets" class="headerlink" title="Chapter 5: Reading SAS Data Sets"></a>Chapter 5: Reading SAS Data Sets</h2><ol>
+<li>The <code>set</code> statement read observations from a SAS data set for further processing in the <code>data</code> step. By default, the <code>set</code> statement read all observations and all variables from the input data set.</li>
+<li>Subset observations by using the <code>where</code> statement.</li>
+</ol>
+<ul>
+<li><code>where Gender = &#39;M&#39;;</code></li>
+<li><code>where Salary &gt; 50000;</code></li>
+<li><code>where Country in (&#39;AU&#39;, &#39;US&#39;);</code></li>
+<li><code>where salary between 50000 and 100000; /* inclusive */</code></li>
+<li><code>where Employee_ID is null;</code></li>
+<li><code>where Employee_ID is missing; /* same as is null */</code></li>
+<li><code>where Job_Title contains &#39;Rep&#39; /* case sensitive */;</code></li>
+<li><code>where Name like &#39;%N&#39;; /* A percent sign (%) replaces any number of characters */</code></li>
+<li><code>where Name like &#39;T_M%&#39; /* An undersocre (_) replaces one character */</code></li>
+</ul>
+<ol>
+<li>Subset variables by using the <code>drop</code> and <code>keep</code> statements.</li>
+</ol>
+<ul>
+<li><code>drop</code> statement specifies the names if the variables to omit from the output data set.</li>
+<li><code>keep</code> statement specifies the names of the variables to write to the output data set.</li>
+<li><code>drop Employee_ID Gender Country Birth_Date;</code></li>
+<li><code>keep First_Name Last_Name Salary Job_Title Hire_Date;</code></li>
+</ul>
+<ol>
+<li>The <code>sum</code> statement produces column totals.</li>
+</ol>
+<ul>
+<li>general form of the <code>sum</code> statement: <code>sum variable(s)</code></li>
+</ul>
+<ol>
+<li>Adding <strong>permanent attributes</strong>: Add labels to the descriptor portion of a SAS data set by using the <code>label</code> statement. Adding formats to the descriptor portion of a SAS data set by using <code>format</code> statement.</li>
+</ol>
+<ul>
+<li>In order to use labels in the <code>print</code> procedure, a label option need to be added to <code>proc print</code> statement: <code>proc print data=work.subset1 label; run;</code></li>
+<li>A <code>format</code> is an instruction that SAS used to write data values. General form: <code>format variable(s) format;</code></li>
+<li><img src="https://slideplayer.com/slide/9274223/28/images/58/SAS+Formats+Selected+SAS+formats%3A+Format+Definition+%24w..jpg" alt="SAS formats"></li>
+<li><img src="https://slideplayer.com/slide/9274223/28/images/62/SAS+Date+Formats+Format+Stored+Value+Displayed+Value+DATE+DEC59.jpg" alt="SAS Date Formats"></li>
+</ul>
+<ol>
+<li>Use <code>label</code> and <code>format</code> statement in the</li>
+</ol>
+<ul>
+<li><strong>proc step</strong> to <strong>temporally assign</strong> the attributes</li>
+<li><strong>data step</strong> to <strong>permanently assign</strong> the attributes</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">libname orion &apos;~/desktop/datasets&apos;;</div><div class="line"></div><div class="line">data work.subset1;</div><div class="line">	set orion.sales;</div><div class="line">	where Country=&apos;AU&apos; and Job_Title contains &apos;Rep&apos;;</div><div class="line">	keep Fisrt_Name Last_Name Salary Job_Tile Hire_Date;</div><div class="line">	label Job_Title = &apos;Sales Title&apos;</div><div class="line">		  Hire_Date = &apos;Date Hired&apos;;</div><div class="line">	format Salary commax8. Hire_Date ddmmyy10.;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="Chapter-6-Reading-Excel-Worksheets"><a href="#Chapter-6-Reading-Excel-Worksheets" class="headerlink" title="Chapter 6: Reading Excel Worksheets"></a>Chapter 6: Reading Excel Worksheets</h2><ol>
+<li><code>libname oriionxls &#39;~/desktop/dataset/sales.xls&#39;;</code></li>
+<li>SAS name literals: By default, special characters such as <code>$</code> are not allowed in data set names, but SAS name literals allow special characters to be included in data set names. (A string with quotation marks, followed by the letter <code>n</code>). <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">libname orionxls &apos;~/desktop/dataset/sales.xls&apos;;</div><div class="line"></div><div class="line">proc print data=orionxls.&apos;Australia$&apos;n;</div><div class="line">run;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">libname orionxls &apos;P:\math2871\sales.xls&apos;;</div><div class="line"></div><div class="line">data work.subset1;</div><div class="line">	set orionxls.&apos;UnitedStates$&apos;n;</div><div class="line">run;</div><div class="line"></div><div class="line">data work.subset2;</div><div class="line">	set orionxls.&apos;Australia$&apos;n;</div><div class="line">run;</div><div class="line"></div><div class="line">proc contents data=orionxls._all_;</div><div class="line">run;</div><div class="line"></div><div class="line">libname orionxls clear;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="Chapter-7-Reading-Delimited-Raw-Data-File"><a href="#Chapter-7-Reading-Delimited-Raw-Data-File" class="headerlink" title="Chapter 7: Reading Delimited Raw Data File"></a>Chapter 7: Reading Delimited Raw Data File</h2><ol>
+<li>The <code>infile</code> statement identifies the physical name of the raw data file to read with an <code>input</code> statement.</li>
+<li>The <code>input</code> statement describes the arrangement of values in the raw data file and assigns input values to the corresponding SAS variables.</li>
+<li><p>The <code>dlm=</code> option can be added to the <code>infile</code> statement to specify an alternate delimiter. (By default, the delimiter is <code>space</code>)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">data work.subset3; </div><div class="line">	infile &apos;sales.csv&apos; dlm=&apos;,&apos;; </div><div class="line">	input Employee_ID First_Name $ </div><div class="line">		Last_Name $ Gender $ Salary </div><div class="line">		Job_Title $ Country $; </div><div class="line">run;</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>input variables &lt;$&gt;;</code>: variables must be specified in the order they appear in the raw data file, left to right. <code>$</code> indicates to store a variable as a character value. The default length for character and numeric variables is <strong>eight</strong> bytes.</p>
+</li>
+<li>The <code>data</code> step is process in two phases: <strong>compilation &amp; execution</strong></li>
+</ol>
+<ul>
+<li>See Week 4’s note, page 21 for more details</li>
+</ul>
+<ol>
+<li>During the compilation phase, SAS </li>
+</ol>
+<ul>
+<li>checks the syntax of the DATA step statements</li>
+<li>creates an input buffer to hold the current raw data file record that is being processed</li>
+<li>creates a program data vector (PDV) to hold the current SAS observation</li>
+<li>creates the descriptor portion of the output data set</li>
+</ul>
+<ol>
+<li><p>The <code>length</code> statement defines the length of a variable explicitly. <code>legnth First_Name Last_Name $ 12 Gender $ 1;</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">data work.subset3; </div><div class="line">	/* length statement define the order appeared in the ouput data, work.subset3 */</div><div class="line">	length First_Name $ 12 Last_Name $ 18 </div><div class="line">		Gender $ 1 Job_Title $ 25 Country $ 2; </div><div class="line">	infile &apos;sales.csv&apos; dlm=&apos;,&apos;; </div><div class="line">	/* input statment defines the order appeared in the source data, &apos;sales.csv&apos; */</div><div class="line">	input Employee_ID First_Name $ </div><div class="line">		Last_Name $ Gender $ Salary </div><div class="line">		Job_Title $ Country $; </div><div class="line">run;</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>Nonstandard data</code> is any data that SAS cannot read without a special instruction. read such data: <code>input variable &lt;$&gt; variable &lt; :informat &gt;;</code>, where <code>informat</code> is an instruction that SAS uses to read data values into a variable.</p>
+</li>
+</ol>
+<ul>
+<li>SAS uses data informats to read and convert dates to SAS date values.</li>
+</ul>
+<ol>
+<li><code>:modifier</code>: The <code>:modifier</code> informs SAS to ignore the width associated with the informat and treat the file as delimited.</li>
+</ol>
+<ul>
+<li><code>:mmddyy10.</code> can read all of the following values: <code>01/07/2008</code>, <code>1/7/2008</code>, <code>1/07/2008</code>, <code>01/07/08</code>, <code>01/7/2008</code>, <code>1/7/08</code><pre><code class="sas">input Employee_ID First_Name $ Last_Name $ 
+  Gender $ Salary Job_Title $ Country $ 
+  Birth_Date :date9. 
+  Hire_Date :mmddyy10.;
+</code></pre>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>谢谢你请我吃糖果：）</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechatpay.jpeg" alt="Kurt WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpeg" alt="Kurt Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SAS/" rel="tag"># SAS</a>
+          
+            <a href="/tags/MATH2871/" rel="tag"># MATH2871</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/28/COMP2511-Review/" rel="next" title="COMP2511 Review (Part 1)">
+                <i class="fa fa-chevron-left"></i> COMP2511 Review (Part 1)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://images-na.ssl-images-amazon.com/images/I/41gXZIpe5ZL.jpg"
+               alt="Kurt" />
+          <p class="site-author-name" itemprop="name">Kurt</p>
+           
+              <p class="site-description motion-element" itemprop="description">Living Like Jim Morrison</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Kurt-Yu" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-2-Getting-Started"><span class="nav-number">1.</span> <span class="nav-text">Chapter 2: Getting Started</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-3-Working-with-SAS-Syntax"><span class="nav-number">2.</span> <span class="nav-text">Chapter 3: Working with SAS Syntax</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-4-Getting-Familiar-with-SAS-Data-Sets"><span class="nav-number">3.</span> <span class="nav-text">Chapter 4: Getting Familiar with SAS Data Sets</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-5-Reading-SAS-Data-Sets"><span class="nav-number">4.</span> <span class="nav-text">Chapter 5: Reading SAS Data Sets</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-6-Reading-Excel-Worksheets"><span class="nav-number">5.</span> <span class="nav-text">Chapter 6: Reading Excel Worksheets</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-7-Reading-Delimited-Raw-Data-File"><span class="nav-number">6.</span> <span class="nav-text">Chapter 7: Reading Delimited Raw Data File</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+    </div>
+    <embed src="http://www.xiami.com/widget/229085322_1769041116/singlePlayer.swf" type="application/x-shockwave-flash" width="250" height="33" wmode="transparent"></embed>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kurt</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://xiayu112358.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2018/10/30/MATH2871-Review-Part-1/';
+          this.page.identifier = '2018/10/30/MATH2871-Review-Part-1/';
+          this.page.title = 'MATH2871 Review (Part 1)';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://xiayu112358.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+    
+
+   
+        <!-- UY BEGIN -->
+        <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid="></script>
+        <!-- UY END -->
+    
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("YMFYfVtvVJXV3v6bDw0L5GCs-gzGzoHsz", "cWGHG9utNyNadWCsFhMXK6F6");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <script type="text/javascript" color="0,0,255" opacity="0.7" zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+</body>
+</html>
